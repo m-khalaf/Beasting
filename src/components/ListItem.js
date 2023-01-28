@@ -1,9 +1,10 @@
 import React from "react";
+import MealItem from "./MealItem";
 
 export default function ListItem(props) {
-  const listItems = props.schedule_obj.meal_object.monday.map((meal) => (
-    <li>{meal}</li>
-  ));
+  const listItems = props.schedule_obj.meal_object.monday.map((meal) => {
+    return <MealItem id={meal.id} name={meal.name} />;
+  });
 
   return (
     <div>
