@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import DayList from "./DayList";
 
 let schedule_obj = {
@@ -38,9 +38,21 @@ let schedule_obj = {
 
 function App() {
   return (
-    <div className="App">
-      <DayList schedule_obj={schedule_obj} />
-    </div>
+    <main className="layout">
+      <section className="sidebar">
+        <hr className="sidebarseparator sidebar--centered" />
+        <nav className="sidebarmenu">
+          <div className="App">
+            <DayList schedule_obj={schedule_obj} />
+          </div>
+          {/* <DayList
+            // days={state.days}
+            // value={state.day}
+            // onChange={setDay}
+          /> */}
+        </nav>
+      </section>
+    </main>
   );
 }
 
