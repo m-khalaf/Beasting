@@ -1,5 +1,5 @@
 import "./App.css";
-import ListItem from "./ListItem";
+import DayList from "./DayList";
 
 let schedule_obj = {
   score: 0,
@@ -8,6 +8,7 @@ let schedule_obj = {
     monday: [
       { name: "apple", id: 1002 },
       { name: "burger", id: 999 },
+      { name: "turkey", id: 805 },
     ],
     tuesday: [],
     wednesday: [],
@@ -38,7 +39,7 @@ let schedule_obj = {
 function App() {
   return (
     <div className="App">
-      <ListItem schedule_obj={schedule_obj} />
+      <DayList schedule_obj={schedule_obj} />
     </div>
   );
 }
