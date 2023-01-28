@@ -4,7 +4,7 @@ export default function DayListItemMeal(props) {
   return (
     <div>
       <li onClick={() => console.log("clicked")} selected={props.selected}>
-        <ul>{props.meal}</ul>
+        <ul>{props.day}</ul>
       </li>
     </div>
   );

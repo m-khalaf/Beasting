@@ -2,15 +2,15 @@ import React from "react";
 import DayListItemMeal from "./DayListItemMeal";
 
 export default function DayList(props) {
-  const daysArray = Object.keys(props.schedule_obj.meal_object);
+  const daysArray = props.schedule_obj.days;
   console.log(daysArray);
-  const day = daysArray.map((meal) => {
+  const day = daysArray.map((day) => {
     return (
       <DayListItemMeal
-        meal={meal}
-        key={meal.id}
-        name={meal.name}
-        selected={meal.name === props.value}
+        day={day.name}
+        key={day.id}
+        name={day.name}
+        selected={day.name === props.value}
         setDay={props.onChange}
       />
     );
