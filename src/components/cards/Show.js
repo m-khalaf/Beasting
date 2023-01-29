@@ -3,7 +3,7 @@ import "../cards/styles.scss";
 
 export default function Show(props) {
   return (
-    <li className="list-group-item list-group-item-action">
+    <li className="appointment__card--show">
       <h5 className="mb-1">{props.name}</h5>
       <p className="mb-1">{props.description}</p>
       <small>

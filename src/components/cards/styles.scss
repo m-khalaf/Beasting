@@ -56,7 +56,7 @@ $appointment-height: 11rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: flex-end;
+      // align-items: flex-end;
       min-width: 50%;
       padding: 1.2rem 1.5rem;
     }
@@ -82,96 +82,8 @@ $appointment-height: 11rem;
       }
     }
 
-    &--status {
-      background-color: $dark-background;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &__card:hover &__actions-button {
+      display: inline;
     }
-
-    &--confirm {
-      @include border-card($danger-color);
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    &--error {
-      @include border-card($error-color);
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-
-  &:last-of-type &__add,
-  &:last-of-type &__card {
-    display: none;
-  }
-
-  &__actions {
-    margin-top: 1rem;
-
-    &-button {
-      @include button-inactive--opacity;
-      margin-right: 0.5rem;
-      display: none;
-
-      &:hover {
-        @include button-active--opacity;
-      }
-
-      &:last-of-type {
-        margin-right: 0;
-      }
-    }
-  }
-
-  &__card:hover &__actions-button {
-    display: inline;
-  }
-
-  &__create-input {
-    background-color: $dark-background;
-    border: 0;
-    border-bottom: 1px solid;
-    color: $white;
-    font-size: 1.5rem;
-    height: 2rem;
-    margin-bottom: 0.25rem;
-    width: 100%;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  &__status-image {
-    margin-right: 2rem;
-    animation: rotate 1s linear infinite;
-  }
-
-  &__error {
-    &-message {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &-close {
-      @include button-inactive--opacity;
-
-      align-self: flex-start;
-      &:hover {
-        @include button-active--opacity;
-      }
-    }
-  }
-
-  &__validation {
-    color: $danger-color;
-    margin-bottom: 1rem;
   }
 }
