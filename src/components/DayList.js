@@ -2,8 +2,7 @@ import React from "react";
 import DayListItem from "./DayListItem";
 
 export default function DayList(props) {
-  const daysArray = props.schedule_obj.days;
-  console.log(daysArray);
+  const daysArray = props.daysArray;
   const day = daysArray.map((day) => {
     return (
       <DayListItem
