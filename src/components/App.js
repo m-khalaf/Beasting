@@ -353,8 +353,10 @@ function App() {
         </nav>
       </section>
 
-      <section>{excercises}</section>
-      <section>{meals}</section>
+      <section className="appointment__card">
+        <section className="appointment__card-left">{excercises}</section>
+        <section className="appointment__card-right">{meals}</section>
+      </section>
     </main>
   );
 }
