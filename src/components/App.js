@@ -3,7 +3,7 @@ import DayList from "./DayList";
 import Show from "./cards/Show";
 import { useState } from "react";
 // import { schedule_obj } from "../mocks/mockData";
-import { getexcerciseForDay } from "../helpers/selectors";
+import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
 let schedule_obj = {
   meals: [
     {
@@ -332,8 +332,16 @@ function App() {
 
   const excercises = getexcerciseForDay(schedule_obj, day).map((exc) => {
     return (
-      <Show name={exc.exercise_name} description={exc.exercise_detail}></Show>
+      <Show
+        name={exc.exercise_name}
+        description={exc.exercise_detail}
+        completion={exc.completion}
+      ></Show>
     );
+  });
+
+  const meals = getMealForDay(schedule_obj, day).map((meal) => {
+    return <Show name={meal.meal_name} completion={meal.completion}></Show>;
   });
 
   return (
@@ -346,7 +354,7 @@ function App() {
       </section>
 
       <section>{excercises}</section>
-      {/* <section>{meals}</section> */}
+      <section>{meals}</section>
     </main>
   );
 }

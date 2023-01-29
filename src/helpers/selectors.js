@@ -293,4 +293,9 @@ const getexcerciseForDay = function (state, day) {
   const excercises = state.exerTrack.filter((exc) => exc.exercise_date === day);
   return excercises;
 };
-export { getexcerciseForDay };
+
+const getMealForDay = function (state, day) {
+  const meals = state.mealTrack.filter((meal) => meal.meal_date === day);
+  return meals;
+};
+export { getexcerciseForDay, getMealForDay };
