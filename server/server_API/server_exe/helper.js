@@ -8,8 +8,8 @@ const unixToDate = function(unix) {
   var year = a.getFullYear();
   var month = months[a.getMonth()];
   var date = a.getDate();
-  var hour = a.getHours();
-  var min = a.getMinutes();
+  // var hour = a.getHours();
+  // var min = a.getMinutes();
   
   return '' + days[a.getDay()] + " " + month + " " + date + " " + year + " " + unix;
   // Wed Mar 16 2022 1647481862
