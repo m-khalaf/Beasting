@@ -34,4 +34,12 @@ router.get('/', (req, res) => {
   })
 })
 
+// route to edit food schedhule
+
+// route to edit meal schedule
+
+// route to use a preset
+
+// route to add new exercises
+
 module.exports = router;
