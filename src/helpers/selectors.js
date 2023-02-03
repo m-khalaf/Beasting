@@ -1,9 +1,3 @@
-import "./App.scss";
-import DayList from "./DayList";
-import Show from "./cards/Show";
-import { useState } from "react";
-// import { schedule_obj } from "../mocks/mockData";
-import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
 let schedule_obj = {
   meals: [
     {
@@ -294,71 +288,14 @@ let schedule_obj = {
     },
   ],
 };
-const daysArray = [
-  {
-    id: 1,
-    name: "Monday",
-    meals: [1, 2],
-    exercises: [1, 2],
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    meals: [3, 4],
-    exercises: [3, 4],
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    meals: [5, 6],
-    exercises: [5, 6],
-  },
-  {
-    id: 4,
-    name: "Thursday",
-    meals: [7, 8],
-    exercises: [7, 8],
-  },
-  {
-    id: 5,
-    name: "Friday",
-    meals: [9, 10],
-    exercises: [9, 10],
-  },
-];
-function App() {
-  console.log(schedule_obj);
-  const [day, setDay] = useState("Monday");
 
-  const excercises = getexcerciseForDay(schedule_obj, day).map((exc) => {
-    return (
-      <Show
-        name={exc.exercise_name}
-        description={exc.exercise_detail}
-        completion={exc.completion}
-      ></Show>
-    );
-  });
+const getexcerciseForDay = function (state, day) {
+  const excercises = state.exerTrack.filter((exc) => exc.exercise_date === day);
+  return excercises;
+};
 
-  const meals = getMealForDay(schedule_obj, day).map((meal) => {
-    return <Show name={meal.meal_name} completion={meal.completion}></Show>;
-  });
-
-  return (
-    <main className="layout">
-      <section className="sidebar">
-        <hr className="sidebarseparator sidebar--centered" />
-        <nav className="sidebarmenu">
-          <DayList daysArray={daysArray} onClick={setDay} />
-        </nav>
-      </section>
-
-      <section className="appointment__card">
-        <section className="appointment__card-left">{excercises}</section>
-        <section className="appointment__card-right">{meals}</section>
-      </section>
-    </main>
-  );
-}
-
-export default App;
+const getMealForDay = function (state, day) {
+  const meals = state.mealTrack.filter((meal) => meal.meal_date === day);
+  return meals;
+};
+export { getexcerciseForDay, getMealForDay };

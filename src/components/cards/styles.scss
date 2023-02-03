@@ -1,0 +1,89 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/animations.scss";
+
+$appointment-height: 11rem;
+
+.appointment {
+  &__add {
+    min-height: $appointment-height;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-button {
+      @include button-inactive--opacity;
+
+      &:hover {
+        @include button-active--opacity;
+      }
+    }
+  }
+
+  &__time {
+    display: flex;
+  }
+
+  &__separator {
+    border: 0;
+    border-bottom: 1px solid darken($white, 5%);
+    width: 100%;
+    margin-left: 1rem;
+  }
+
+  &__card {
+    min-height: $appointment-height;
+    margin-left: 3rem;
+    border-radius: 0.5rem;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 90%;
+    // flex-flow: row wrap;
+    color: $black;
+
+    &-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 50%;
+      padding: 1.2rem 1.5rem;
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      // align-items: flex-end;
+      min-width: 50%;
+      padding: 1.2rem 1.5rem;
+    }
+
+    &--create {
+      background-color: $dark-background;
+      display: flex;
+    }
+
+    &--show {
+      color: rgba($booked-color, $active-opacity);
+      background: linear-gradient(
+        90deg,
+        rgba($booked-color, $active-opacity),
+        rgba($booked-color, $active-opacity) 8px,
+        rgba($booked-color, $inactive-opacity) 0,
+        rgba($booked-color, $inactive-opacity)
+      );
+
+      &:hover {
+        color: darken($white, 5%);
+        background-color: rgba($booked-color, $active-opacity);
+      }
+    }
+
+    &__card:hover &__actions-button {
+      display: inline;
+    }
+  }
+}

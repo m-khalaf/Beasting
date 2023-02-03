@@ -12,14 +12,14 @@
     align-self: center;
   }
 
-  &separator {
+  &__separator {
     width: 90%;
     margin: $spacing 0;
     border: solid 1px;
     color: darken($white, 5%);
   }
 
-  &menu {
+  &__menu {
     flex: 1;
   }
 
