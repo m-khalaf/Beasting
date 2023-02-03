@@ -1,9 +1,11 @@
 import "./App.scss";
 import DayList from "./DayList";
 import Show from "./cards/Show";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
 import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
+
 let schedule_obj = {
   meals: [
     {
@@ -328,6 +330,13 @@ const daysArray = [
 ];
 function App() {
   console.log(schedule_obj);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/home/').then((response) => {
+      console.log(response.data);
+    });
+  }, [])
+
   const [day, setDay] = useState("Monday");
 
   const excercises = getexcerciseForDay(schedule_obj, day).map((exc) => {
