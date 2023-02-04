@@ -4,6 +4,9 @@ import Show from "./cards/Show";
 import { useState } from "react";
 // import { schedule_obj } from "../mocks/mockData";
 import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
+import CreateMeal from "./cards/createMeal";
+import CreateExercise from "./cards/createExercise";
+
 let schedule_obj = {
   meals: [
     {
@@ -326,9 +329,37 @@ const daysArray = [
     exercises: [9, 10],
   },
 ];
+
 function App() {
-  console.log(schedule_obj);
   const [day, setDay] = useState("Monday");
+  const [meal, setMeal] = useState([]);
+  const [exercise, setExercise] = useState([]);
+
+  // this section describes the creating of new exercis and new meals
+  // new meal section
+  const handleCreateMeal = (mealName) => {
+    console.log(mealName);
+    const updateMeals = [...meal, { id: 123, meal_name: mealName }];
+    console.log("new Meal array", updateMeals);
+    setMeal(updateMeals);
+  };
+
+  // new exercise section
+  const handleCreateExercise = (formData) => {
+    console.log(formData);
+    const updateExercise = [
+      ...exercise,
+      {
+        id: 123,
+        exercise_name: formData.exerciseName,
+        exercise_detail: formData.exerciseDetail,
+      },
+    ];
+    console.log("new exericse array", updateExercise);
+    setExercise(updateExercise);
+  };
+
+  // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day).map((exc) => {
     return (
@@ -356,6 +387,13 @@ function App() {
       <section className="appointment__card">
         <section className="appointment__card-left">{excercises}</section>
         <section className="appointment__card-right">{meals}</section>
+      </section>
+
+      <section className="create component">
+        <CreateMeal onCreateMeal={handleCreateMeal} />
+      </section>
+      <section className="create component">
+        <CreateExercise onCreateExercise={handleCreateExercise} />
       </section>
     </main>
   );
