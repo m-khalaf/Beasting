@@ -1,9 +1,11 @@
 import "./App.scss";
 import DayList from "./DayList";
-import Show from "./cards/Show";
-import { useState } from "react";
-// import { schedule_obj } from "../mocks/mockData";
-import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
+import DaysNavigationBar from "./DaysNavigationBar";
+import React, { useState } from "react";
+import { getexcerciseForDay } from "../helpers/selectors";
+
+import OutlinedCard from "./OutlinedCard";
+
 let schedule_obj = {
   meals: [
     {
@@ -327,36 +329,50 @@ const daysArray = [
   },
 ];
 function App() {
-  console.log(schedule_obj);
+  // console.log(schedule_obj);
   const [day, setDay] = useState("Monday");
 
-  const excercises = getexcerciseForDay(schedule_obj, day).map((exc) => {
-    return (
-      <Show
-        name={exc.exercise_name}
-        description={exc.exercise_detail}
-        completion={exc.completion}
-      ></Show>
-    );
-  });
+  const excercises = getexcerciseForDay(schedule_obj, day);
 
-  const meals = getMealForDay(schedule_obj, day).map((meal) => {
-    return <Show name={meal.meal_name} completion={meal.completion}></Show>;
-  });
+  // .map((exc) => {
+  //   return (
+  //     <Show
+  //       name={exc.exercise_name}
+  //       description={exc.exercise_detail}
+  //       completion={exc.completion}
+  //     ></Show>
+  //   );
+  // });
+
+  // const meals = getMealForDay(schedule_obj, day).map((meal) => {
+  //   return <Show name={meal.meal_name} completion={meal.completion}></Show>;
+  // });
 
   return (
     <main className="layout">
-      <section className="sidebar">
-        <hr className="sidebarseparator sidebar--centered" />
-        <nav className="sidebarmenu">
-          <DayList daysArray={daysArray} onClick={setDay} />
-        </nav>
-      </section>
+      <DaysNavigationBar
+        daysArray={daysArray}
+        schedule_obj={schedule_obj}
+        onChange={setDay}
+        day={day}
+        excercises={excercises}
+      />
 
-      <section className="appointment__card">
-        <section className="appointment__card-left">{excercises}</section>
-        <section className="appointment__card-right">{meals}</section>
-      </section>
+      {/* <section className="sidebar"> */}
+      {/* <hr className="sidebarseparator sidebar--centered" /> */}
+      {/* <nav className="sidebarmenu"> */}
+      {/* <div className="App"> */}
+
+      {/* <DayList schedule_obj={schedule_obj} /> */}
+
+      {/* </div> */}
+      {/* <DayList
+            // days={state.days}
+            // value={state.day}
+            // onChange={setDay}
+          /> */}
+      {/* // </nav> */}
+      {/* // </section> */}
     </main>
   );
 }
