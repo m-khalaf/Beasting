@@ -22,8 +22,8 @@ JOIN users
 ON users.id = meals_tracker.user_id
 WHERE users.id = 1;
 
---Update exercises for week
---the ones with matching tracking_ids are not changed
+-- we are given a new list of exercises, their ids and the unique tracking id
+--delete exercises for the week previously set except the ones with matching tracking_ids with the current new
 --add new ones 
 --according to user ID
 
@@ -39,3 +39,5 @@ WHERE users.id = 1;
 --Completing tracking
 
 --Completing tracking
+
+-- create a qury that deletes an entry from exercise tracking based on tracking id and user id
