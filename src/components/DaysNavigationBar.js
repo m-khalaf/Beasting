@@ -1,6 +1,5 @@
 import React from "react";
 import { Tabs, Tab } from "@mui/material";
-import OutlinedCard from "./OutlinedCard";
 import { dayFromValue } from "../helpers/selectors";
 
 function DaysNavigationBar(props) {
@@ -16,7 +15,7 @@ function DaysNavigationBar(props) {
   });
 
   return (
-    <div>
+    <div style={{ height: "50px" }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -26,7 +25,6 @@ function DaysNavigationBar(props) {
       >
         {day}
       </Tabs>
-      <OutlinedCard excercises={props.excercises} />
     </div>
   );
 }

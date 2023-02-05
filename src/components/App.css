@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.excercise,
+.meal {
+  width: 80%;
+  margin-top: 20px;
+}
+.excercise span,
+.meal span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.faPlus {
+  cursor: pointer;
+}
