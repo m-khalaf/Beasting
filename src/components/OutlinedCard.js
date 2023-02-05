@@ -6,50 +6,46 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Switch, Grid } from "@nextui-org/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import "../styles/OutlinedCard.css";
 
-const Complete = () => {
+const EditIcon = () => {
   return (
-    <Grid.Container gap={2}>
-      <Grid>
-        <Switch color="success" checked={true} />
-      </Grid>
-    </Grid.Container>
+    <div>
+      <FontAwesomeIcon icon={faEdit} className="fa-edit" />
+    </div>
   );
 };
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  ></Box>
+const DeleteIcon = () => (
+  <div>
+    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" />
+  </div>
 );
 
 export default function OutlinedCard(props) {
   const card = props.excercises.map((excercise) => {
     return (
-      <React.Fragment>
-        <CardContent>
-          {/* <Typography
-            sx={{ fontSize: 14 }}
-            color="text.secondary"
-            gutterBottom
-          ></Typography> */}
-          <Typography variant="h5" component="div">
-            {/* be{bull}nev{bull}o{bull}lent */}
+      <React.Fragment className="card-container">
+        <CardContent className="card card-content">
+          <Typography variant="h5" component="div" className="exercise-name">
             {excercise.exercise_name}
           </Typography>
-          {/* <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography> */}
+
           <Typography variant="body2">
-            <br />
             {excercise.exercise_detail}
+            <CardActions className="card-actions">
+              <Grid.Container>
+                <Grid>
+                  <Switch color="success" checked={excercise.completion} />
+                </Grid>
+              </Grid.Container>
+              <EditIcon />
+              <DeleteIcon />
+            </CardActions>
           </Typography>
         </CardContent>
-        <CardActions>
-          <Complete />
-          {/* <Button size="small">Learn More</Button> */}
-        </CardActions>
       </React.Fragment>
     );
   });

@@ -220,7 +220,7 @@ let schedule_obj = {
       exercise_name: "Bicep Curl",
       exercise_detail: "3 sets of 15 reps",
       tracking_id: 2,
-      completion: false,
+      completion: true,
       exercise_date: "Tuesday",
     },
     {
