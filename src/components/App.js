@@ -1,11 +1,10 @@
 import "./App.scss";
 import DayList from "./DayList";
 import DaysNavigationBar from "./DaysNavigationBar";
-import React, { useState } from "react";
 import OutlinedCard from "./OutlinedCard";
 import Show from "./cards/Show";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
 import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
 
