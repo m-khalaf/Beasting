@@ -331,6 +331,18 @@ const daysArray = [
     meals: [9, 10],
     exercises: [9, 10],
   },
+  {
+    id: 6,
+    name: "Saturday",
+    meals: [11, 12],
+    exercises: [11, 12],
+  },
+  {
+    id: 7,
+    name: "Sunday",
+    meals: [13, 14],
+    exercises: [13, 14],
+  },
 ];
 
 function App() {
