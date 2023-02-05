@@ -1,3 +1,7 @@
+---------------------------------
+----------UNIX TIMESTAMPS--------
+---------------------------------
+
 January 25, 2023 amt 12:00 AM: 1674651600
 January 25, 2023 amt 12:00 AM: 1674666000
 January 25, 2023 amt 12:00 AM: 1674687600
@@ -102,3 +106,52 @@ February 19, 2023 amt 12:00 AM: 1676811600
 February 19, 2023 amt 12:00 AM: 1676826000
 February 19, 2023 amt 12:00 AM: 1676847600
 February 19, 2023 amt 12:00 AM: 1676854800
+
+---------------------------------
+------------MEALS DATA-----------
+---------------------------------
+('Grilled Chicken with Quinoa and Broccoli')
+('Turkey and Avocado Lettuce Wraps')
+('Shrimp and Vegetable Stir-Fry')
+('Baked Salmon with Asparagus and Sweet Potato')
+('Veggie and Hummus Wrap')
+('Chickpea and Kale Salad')
+('Turkey and Zucchini Meatballs with Spaghetti Squash')
+('Grilled Vegetable Skewers with Tzatziki Sauce')
+('Veggie and Egg White Omelette')
+('Lentil and Brown Rice Bowl')
+('Baked Chicken Breast with Roasted Brussels Sprouts')
+('Turkey and Berry Salad')
+('Cauliflower Rice and Chicken Stir-Fry')
+('Grilled Tuna Steak with Mixed Greens Salad')
+('Avocado and Egg Toast')
+('Quinoa and Black Bean Salad')
+('Slow Cooker Chicken and Vegetable Soup')
+('Grilled Veggie and Turkey Burger')
+('Kale and Quinoa Power Salad')
+('Baked Sweet Potato and Black Bean Tacos')
+('Turkey and Veggie Stuffed Peppers')
+('Broccoli and Chicken Alfredo with Whole Wheat Pasta')
+('Grilled Shrimp and Mango Salad')
+('Turkey and Avocado BLT on Whole Grain Bread')
+('Zucchini and Carrot Noodle Bowl with Peanut Sauce')
+('Baked Cod with Tomatoes and Zucchini')
+('Quinoa and Roasted Vegetable Bowl')
+('Grilled Chicken and Pineapple Skewers')
+('Turkey and Hummus Wrap with Carrots and Cucumber')
+('Spaghetti Squash and Meatball Bowl')
+('Grilled Veggie and Halloumi Cheese Skewers')
+('Baked Salmon and Vegetable Packets')
+('Quinoa and Grilled Chicken Salad')
+('Slow Cooker Vegetable and Chickpea Curry')
+('Grilled Turkey and Vegetable Kebabs')
+('Avocado and Chicken Salad on Whole Grain Bread')
+('Roasted Cauliflower and Chickpea Bowl')
+('Grilled Shrimp and Veggie Skewers')
+('Baked Sweet Potato and Turkey Chili')
+('Turkey and Vegetable Stuffed Sweet Potato')
+('Grilled Chicken and Zucchini Noodle Bowl')
+('Quinoa and Grilled Veggie Bowl')
+('Slow Cooker Turkey and Veggie Stew')
+('Grilled Salmon and Asparagus Skewers')
+('Turkey and Veggie Wrap with Yogurt Dipping Sauce')
