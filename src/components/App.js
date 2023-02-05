@@ -1,8 +1,5 @@
-import "./App.scss";
-import DayList from "./DayList";
+import "./App.css";
 import DaysNavigationBar from "./DaysNavigationBar";
-import OutlinedCard from "./OutlinedCard";
-import Show from "./cards/Show";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
@@ -10,6 +7,10 @@ import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
 
 import CreateMeal from "./cards/createMeal";
 import CreateExercise from "./cards/createExercise";
+import OutlinedCardExcercise from "./OutlinedCardExcercise";
+import OutlinedCardMeal from "./OutlinedCardMeal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 let schedule_obj = {
   meals: [
@@ -332,6 +333,18 @@ let daysArray = [
     meals: [9, 10],
     exercises: [9, 10],
   },
+  {
+    id: 6,
+    name: "Saturday",
+    meals: [11, 12],
+    exercises: [11, 12],
+  },
+  {
+    id: 7,
+    name: "Sunday",
+    meals: [13, 14],
+    exercises: [13, 14],
+  },
 ];
 
 const daysObject = {
@@ -382,6 +395,10 @@ const daysObject = {
 function App() {
   // console.log(schedule_obj);
 
+  const [day, setDay] = useState("Monday");
+  const [meal, setMeal] = useState([]);
+  const [exercise, setExercise] = useState([]);
+
   useEffect(() => {
     console.log('Hello');
     axios.get('http://localhost:8080/home/').then((response) => {
@@ -401,10 +418,6 @@ function App() {
       console.log(daysArray)
     });
   }, [])
-
-  const [day, setDay] = useState("Monday");
-  const [meal, setMeal] = useState([]);
-  const [exercise, setExercise] = useState([]);
 
   // this section describes the creating of new exercis and new meals
   // new meal section
@@ -434,19 +447,7 @@ function App() {
 
   const excercises = getexcerciseForDay(schedule_obj, day);
 
-  // .map((exc) => {
-  //   return (
-  //     <Show
-  //       name={exc.exercise_name}
-  //       description={exc.exercise_detail}
-  //       completion={exc.completion}
-  //     ></Show>
-  //   );
-  // });
-
-  // const meals = getMealForDay(schedule_obj, day).map((meal) => {
-  //   return <Show name={meal.meal_name} completion={meal.completion}></Show>;
-  // });
+  const meals = getMealForDay(schedule_obj, day);
 
   return (
     <main className="layout">
@@ -456,23 +457,29 @@ function App() {
         onChange={setDay}
         day={day}
         excercises={excercises}
+        meals={meals}
       />
-
-      {/* <section className="sidebar"> */}
-      {/* <hr className="sidebarseparator sidebar--centered" /> */}
-      {/* <nav className="sidebarmenu"> */}
-      {/* <div className="App"> */}
-
-      {/* <DayList schedule_obj={schedule_obj} /> */}
-
-      {/* </div> */}
-      {/* <DayList
-            // days={state.days}
-            // value={state.day}
-            // onChange={setDay}
-          /> */}
-      {/* // </nav> */}
-      {/* // </section> */}
+      <section className="excercise">
+        <div>
+          <span>Exercises</span>
+          <FontAwesomeIcon icon={faPlus} className="faPlus" />
+        </div>
+        <OutlinedCardExcercise excercises={excercises} />
+      </section>
+      <section className="meal">
+        <div>
+          <span>Meals</span>
+          <FontAwesomeIcon icon={faPlus} className="faPlus" />
+        </div>
+        <OutlinedCardMeal meals={meals} />
+      </section>
+      <div class="smiley-face" data-score="50">
+        <div class="smiley-face-inner">
+          <div class="smiley-face-circle"></div>
+          <div class="smiley-face-eyes"></div>
+          <div class="smiley-face-mouth"></div>
+        </div>
+      </div>
     </main>
   );
 }
