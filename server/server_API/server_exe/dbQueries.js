@@ -111,5 +111,55 @@ module.exports = {
       });
   },
 
+  addExercise:(name ,desciption) => {
+    let queryString = 
+    ``;
+
+    const values = [name, desciption];
+
+    return pool.query(queryString, values)
+      .then((result) => {
+        if (result) {
+          if (result['rows'].length !== 0) {
+            
+            return result['rows'];
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  },
+
+  addMeal:(name ,desciption) => {
+    let queryString = 
+    ``;
+
+    const values = [name, desciption];
+
+    return pool.query(queryString, values)
+      .then((result) => {
+        if (result) {
+          if (result['rows'].length !== 0) {
+            
+            return result['rows'];
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  },
+
 
 }
