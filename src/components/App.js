@@ -5,11 +5,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
 import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
-<<<<<<< HEAD
-=======
+
 import CreateMeal from "./cards/createMeal";
 import CreateExercise from "./cards/createExercise";
->>>>>>> 4abe0fe89d488a7ebd7be741de50341459b2ebe9
 
 let schedule_obj = {
   meals: [
@@ -335,11 +333,13 @@ const daysArray = [
 ];
 
 function App() {
-  console.log(schedule_obj);
+  // console.log(schedule_obj);
 
   useEffect(() => {
+    console.log('Hello');
     axios.get('http://localhost:8080/home/').then((response) => {
-      console.log(response.data);
+      // schedule_obj = {...response.data}
+      console.log(response);
     });
   }, [])
 

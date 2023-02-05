@@ -2,10 +2,12 @@
 
 // load .env data into process.env
 require('dotenv').config();
+var cors = require('cors')
 
 // Web server config
 const express = require('express');
 const morgan = require('morgan');
+
 
 // Setting port and creating an instant of a server
 const PORT = process.env.PORT || 8080; // CHANGE
@@ -15,6 +17,7 @@ const app = express();
 app.use(morgan('dev')); // CHANGE
 // app.use(cookiesState()); 
 app.use(express.urlencoded({ extended: true })); 
+app.use(cors())
 
 // Express will serve Frontend Files from /public folder
 app.use(express.static('public'));

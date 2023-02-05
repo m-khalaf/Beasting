@@ -4,7 +4,7 @@
 const unixToDate = function(unix) {
   let a  = new Date(unix * 1000);
   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   var year = a.getFullYear();
   var month = months[a.getMonth()];
   var date = a.getDate();
