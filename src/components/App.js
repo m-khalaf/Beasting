@@ -9,7 +9,6 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Form from "./Form";
 
 let schedule_obj = {
   meals: [
@@ -337,7 +336,8 @@ function App() {
   const [day, setDay] = useState("Monday");
   const [meal, setMeal] = useState([]);
   const [exercise, setExercise] = useState([]);
-
+  const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
+  const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   // this section describes the creating of new exercis and new meals
   // new meal section
   const handleCreateMeal = (mealName) => {
@@ -368,8 +368,6 @@ function App() {
 
   const meals = getMealForDay(schedule_obj, day);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   return (
     <main className="layout">
       <DaysNavigationBar
@@ -386,17 +384,30 @@ function App() {
           <FontAwesomeIcon
             icon={faPlus}
             className="faPlus"
-            onClick={() => setModalIsOpen(true)}
+            onClick={() => setModalExerciseIsOpen(true)}
           />
         </div>
-        <Form modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+        <CreateExercise
+          modalIsOpen={modalExerciseIsOpen}
+          setModalIsOpen={setModalExerciseIsOpen}
+          onCreateExercise={handleCreateExercise}
+        />
         <OutlinedCardExcercise excercises={excercises} />
       </section>
       <section className="meal">
         <div>
           <span>Meals</span>
-          <FontAwesomeIcon icon={faPlus} className="faPlus" />
+          <FontAwesomeIcon
+            icon={faPlus}
+            onClick={() => setModalMealIsOpen(true)}
+            className="faPlus"
+          />
         </div>
+        <CreateMeal
+          modalIsOpen={modalMealIsOpen}
+          setModalIsOpen={setModalMealIsOpen}
+          onCreateExercise={handleCreateMeal}
+        />
         <OutlinedCardMeal meals={meals} />
       </section>
       <div class="smiley-face" data-score="50">
