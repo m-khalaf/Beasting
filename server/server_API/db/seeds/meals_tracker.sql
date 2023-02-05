@@ -36,8 +36,8 @@ insert into meals_tracker (meal_id, meal_date, completion, user_id) values (32, 
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (33, 1675342800, false, 1);
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (34, 1675357200, false, 1);
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (35, 1675378800, false, 1);
-insert into meals_tracker (meal_id, meal_date, completion, user_id) values (36, 1675386000, false, 1);
-insert into meals_tracker (meal_id, meal_date, completion, user_id) values (37, 1675040400, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (36, 1675429200, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (37, 1675443600, false, 1);
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (38, 1675040400, false, 1);
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (39, 1675040400, false, 1);
 insert into meals_tracker (meal_id, meal_date, completion, user_id) values (40, 1675040400, false, 1);
