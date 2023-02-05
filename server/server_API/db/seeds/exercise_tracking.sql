@@ -13,10 +13,10 @@ insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) 
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (10, false, 1674838800, 2);
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (11, false, 1674860400, 2);
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (12, false, 1674867600, 1);
-insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (13, false, 1647481862, 2);
-insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (14, false, 1647481862, 1);
-insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (15, false, 1647481862, 2);
-insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (16, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (13, false, 1674910800, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (14, false, 1674925200, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (15, false, 1674946800, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (16, false, 1674954000, 1);
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (17, false, 1647481862, 2);
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (18, false, 1647481862, 1);
 insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (19, false, 1647481862, 2);
