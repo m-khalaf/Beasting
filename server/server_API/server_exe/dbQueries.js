@@ -32,9 +32,11 @@ module.exports = {
   // aggregate the excerises from the two meal tables
   getExercises:() => {
     return pool.query(
-      `Select * from exercises`
+      `Select * from exercises
+       WHERE id = 1`
     )
       .then((result) => {
+        // console.log(result)
         if (result) {
           if (result['rows'].length !== 0) {
             // Returns true if user email is in database
@@ -52,16 +54,22 @@ module.exports = {
       });
   },
 
-  getExercisesTrack:() => {
-    return pool.query(
-      `SELECT exercise_name, exercise_detail, Exercise_TRACKing.id as tracking_id, completion,exercise_date FROM exercises
-      JOIN Exercise_TRACKing
-      ON Exercise_TRACKing.Exercise_id = exercises.id`
-    )
-      .then((result) => {
+  getExercisesTrack: (userid) => {
+    let queryString = 
+    `SELECT exercise_name, exercise_detail, exercise_tracking.id AS tracking_id, completion, exercise_date
+    FROM exercises
+    JOIN exercise_tracking
+    ON exercise_tracking.exercise_id = exercises.id
+    WHERE exercise_tracking.user_id = $1;
+    `;
+
+    const values = [`${userid}`];
+    
+    return pool.query(queryString, values).then((result) => {
+        // console.log(result['rows'])
         if (result) {
           if (result['rows'].length !== 0) {
-            // Returns true if user email is in database
+            
             return result['rows'];
           } else {
             return false;
@@ -76,10 +84,14 @@ module.exports = {
       });
   },
 
-  getMealsTrack:() => {
+  getMealsTrack:(userid) => {
     return pool.query(
-      `SELECT meals.meal_name, MEALS_TRACKER.id as tracking_id, MEALS_TRACKER.meal_date, MEALS_TRACKER.completion FROM meals
-      JOIN MEALS_TRACKER ON MEALS_TRACKER.meal_id = meals.id`
+      `SELECT meals.meal_name, MEALS_TRACKER.id as tracking_id, MEALS_TRACKER.meal_date, MEALS_TRACKER.completion 
+      FROM meals
+      JOIN MEALS_TRACKER 
+      ON MEALS_TRACKER.meal_id = meals.id
+      WHERE meals_tracker.user_id = $1;
+    `, [userid]
     )
       .then((result) => {
         if (result) {

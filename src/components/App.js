@@ -299,7 +299,7 @@ let schedule_obj = {
     },
   ],
 };
-const daysArray = [
+let daysArray = [
   {
     id: 1,
     name: "Monday",
@@ -332,14 +332,71 @@ const daysArray = [
   },
 ];
 
+const daysObject = {
+  "Monday": {
+    id: 1,
+    name: "Monday",
+    meals: [],
+    exercises: [],
+  },
+  "Tuesday": {
+    id: 2,
+    name: "Tuesday",
+    meals: [],
+    exercises: [],
+  },
+  "Wednesday": {
+    id: 3,
+    name: "Wednesday",
+    meals: [],
+    exercises: [],
+  },
+  "Thursday": {
+    id: 4,
+    name: "Thursday",
+    meals: [],
+    exercises: [],
+  },
+  "Friday": {
+    id: 5,
+    name: "Friday",
+    meals: [],
+    exercises: [],
+  },
+  "Saturday": {
+    id: 6,
+    name: "Saturday",
+    meals: [],
+    exercises: [],
+  },
+  "Sunday": {
+    id: 7,
+    name: "Sunday",
+    meals: [],
+    exercises: [],
+  },
+};
+
 function App() {
   // console.log(schedule_obj);
 
   useEffect(() => {
     console.log('Hello');
     axios.get('http://localhost:8080/home/').then((response) => {
-      // schedule_obj = {...response.data}
-      console.log(response);
+      schedule_obj = {...response.data}
+      
+      for(const exercises of schedule_obj.exerTrack) {
+        console.log(exercises.exercise_date.split(' ')[0]);
+        daysObject[exercises.exercise_date.split(' ')[0]]['exercises'].push(exercises['tracking_id']);
+      }
+      for(const meals of schedule_obj.mealTrack) {
+        daysObject[meals.meal_date.split(' ')[0]]['meals'].push(meals['tracking_id'])
+      }
+      daysArray = [];
+      for(const days in daysObject) {
+        daysArray.push(daysObject[days])
+      }
+      console.log(daysArray)
     });
   }, [])
 

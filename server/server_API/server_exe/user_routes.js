@@ -9,6 +9,7 @@ const {schedule} = require('./helper')
 // This will load our initial load on every page refresh
 router.get('/', (req, res) => {
   
+  let userid = 1;
   db.getMeals().then((meals) => {
 
     if(meals.length !== 0) {
@@ -16,10 +17,11 @@ router.get('/', (req, res) => {
         if(exercises.length !== 0) {
           //Parsing data and sending it to the user.
           // res.json(helper.schedule(meals, excerises, 1674869344));
-          db.getExercisesTrack().then((exerTrack) => {
-            db.getMealsTrack().then((mealTrack) => {
+          db.getExercisesTrack(userid).then((exerTrack) => {
+            db.getMealsTrack(userid).then((mealTrack) => {
+              console.log({ meals, exercises, exerTrack, mealTrack });
               res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
-              // res.json({ meals, exercises, exerTrack, mealTrack });
+              // // res.json({ meals, exercises, exerTrack, mealTrack });
             })
           })
           
