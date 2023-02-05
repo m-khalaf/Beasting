@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 
 
 // route to edit meal schedule
-
+// [...meal, { id: 123, meal_name: mealName }];
 
 // route to use a preset
 

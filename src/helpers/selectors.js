@@ -290,13 +290,13 @@ let schedule_obj = {
 };
 
 const getexcerciseForDay = function (state, day) {
-  const exercises = state.exerTrack.filter((exc) => exc.exercise_date === day);
+  const exercises = state.exerTrack.filter((exc) => exc.exercise_date.split(' ')[0] === day);
   console.log(exercises);
   return exercises;
 };
 
 const getMealForDay = function (state, day) {
-  const meals = state.mealTrack.filter((meal) => meal.meal_date === day);
+  const meals = state.mealTrack.filter((meal) => meal.meal_date.split(' ')[0] === day);
   console.log(meals)
   return meals;
 };
