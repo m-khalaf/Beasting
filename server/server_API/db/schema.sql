@@ -40,7 +40,7 @@ create table exercise_tracking (
 
 create table meals (
 	id SERIAL PRIMARY KEY NOT NULL,
-	meal_name VARCHAR(50) NOT NULL,
+	meal_name VARCHAR(255) NOT NULL,
 	created_at timestamp default current_timestamp,
 	updated_at timestamp default current_timestamp
 	-- calories

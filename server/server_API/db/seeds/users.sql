@@ -1,0 +1,23 @@
+---------------------------------
+------------USERS DATA-----------
+---------------------------------
+insert into users (id, name, email, password) values (1, 'Junie Barrand', 'jbarrand0@forbes.com', 'TZ64424Ugl');
+insert into users (id, name, email, password) values (2, 'Christian Treeby', 'ctreeby1@cornell.edu', 'qLDvQodxc');
+-- insert into users (id, name, email, password) values (3, 'Devina Calbaithe', 'dcalbaithe2@tmall.com', '5uOGFbhKor');
+-- insert into users (id, name, email, password) values (4, 'Bambi Tringham', 'btringham3@over-blog.com', 'iz4tcIYj');
+-- insert into users (id, name, email, password) values (5, 'Leesa Leipnik', 'lleipnik4@sourceforge.net', '9S2aVl');
+-- insert into users (id, name, email, password) values (6, 'Teena Cuttings', 'tcuttings5@ft.com', 'wPDDLG');
+-- insert into users (id, name, email, password) values (7, 'Jamey Dei', 'jdei6@histats.com', 'NtBf95YQ88v');
+-- insert into users (id, name, email, password) values (8, 'Amerigo Bigham', 'abigham7@posterous.com', 'zElfbO6Mi');
+-- insert into users (id, name, email, password) values (9, 'Tally Ipgrave', 'tipgrave8@wsj.com', 'vprhPdeRn');
+-- insert into users (id, name, email, password) values (10, 'Erin Tiffin', 'etiffin9@tumblr.com', 'UobeLzcJ9rY');
+-- insert into users (id, name, email, password) values (11, 'Ninette Duckit', 'nduckita@yellowpages.com', 'UPbz9pcgZ');
+-- insert into users (id, name, email, password) values (12, 'Mervin Press', 'mpressb@histats.com', 'OMwIsUvvV877');
+-- insert into users (id, name, email, password) values (13, 'Addie Joesbury', 'ajoesburyc@globo.com', 'PfBxePCCsIkL');
+-- insert into users (id, name, email, password) values (14, 'Arlinda Brunsdon', 'abrunsdond@xrea.com', 'hXa5zPlHkBM5');
+-- insert into users (id, name, email, password) values (15, 'Cally Abbis', 'cabbise@deviantart.com', 'baOVmHlk2');
+-- insert into users (id, name, email, password) values (16, 'Judi Mayhead', 'jmayheadf@psu.edu', '9G7Hdsyl');
+-- insert into users (id, name, email, password) values (17, 'Alphard Fronsek', 'afronsekg@ucla.edu', 'bifSzXVCw');
+-- insert into users (id, name, email, password) values (18, 'Enid Mabbs', 'emabbsh@studiopress.com', '2JHGiWc');
+-- insert into users (id, name, email, password) values (19, 'Philippa Ladson', 'pladsoni@fda.gov', 'ptJsFxvxSxQq');
+-- insert into users (id, name, email, password) values (20, 'Suellen Crankshaw', 'scrankshawj@wordpress.com', 'ayim1y');
