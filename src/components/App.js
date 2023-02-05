@@ -9,6 +9,7 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Form from "./Form";
 
 let schedule_obj = {
   meals: [
@@ -304,44 +305,30 @@ const daysArray = [
   {
     id: 1,
     name: "Monday",
-    meals: [1, 2],
-    exercises: [1, 2],
   },
   {
     id: 2,
     name: "Tuesday",
-    meals: [3, 4],
-    exercises: [3, 4],
   },
   {
     id: 3,
     name: "Wednesday",
-    meals: [5, 6],
-    exercises: [5, 6],
   },
   {
     id: 4,
     name: "Thursday",
-    meals: [7, 8],
-    exercises: [7, 8],
   },
   {
     id: 5,
     name: "Friday",
-    meals: [9, 10],
-    exercises: [9, 10],
   },
   {
     id: 6,
     name: "Saturday",
-    meals: [11, 12],
-    exercises: [11, 12],
   },
   {
     id: 7,
     name: "Sunday",
-    meals: [13, 14],
-    exercises: [13, 14],
   },
 ];
 
@@ -381,6 +368,8 @@ function App() {
 
   const meals = getMealForDay(schedule_obj, day);
 
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
   return (
     <main className="layout">
       <DaysNavigationBar
@@ -394,8 +383,13 @@ function App() {
       <section className="excercise">
         <div>
           <span>Exercises</span>
-          <FontAwesomeIcon icon={faPlus} className="faPlus" />
+          <FontAwesomeIcon
+            icon={faPlus}
+            className="faPlus"
+            onClick={() => setModalIsOpen(true)}
+          />
         </div>
+        <Form modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         <OutlinedCardExcercise excercises={excercises} />
       </section>
       <section className="meal">
