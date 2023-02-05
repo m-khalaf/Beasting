@@ -32,8 +32,7 @@ module.exports = {
   // aggregate the excerises from the two meal tables
   getExercises:() => {
     return pool.query(
-      `Select * from exercises
-       WHERE id = 1`
+      `Select * from exercises`
     )
       .then((result) => {
         // console.log(result)

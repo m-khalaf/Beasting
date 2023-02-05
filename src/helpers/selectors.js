@@ -290,12 +290,14 @@ let schedule_obj = {
 };
 
 const getexcerciseForDay = function (state, day) {
-  const excercises = state.exerTrack.filter((exc) => exc.exercise_date === day);
-  return excercises;
+  const exercises = state.exerTrack.filter((exc) => exc.exercise_date === day);
+  console.log(exercises);
+  return exercises;
 };
 
 const getMealForDay = function (state, day) {
   const meals = state.mealTrack.filter((meal) => meal.meal_date === day);
+  console.log(meals)
   return meals;
 };
 
@@ -306,6 +308,6 @@ const dayFromValue = function (value) {
   if (value === 3) return "Thursday";
   if (value === 4) return "Friday";
   if (value === 5) return "Saturday";
-  if (value === 6) return "Monday";
+  if (value === 6) return "Sunday";
 };
 export { getexcerciseForDay, getMealForDay, dayFromValue };
