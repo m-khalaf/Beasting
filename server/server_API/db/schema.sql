@@ -11,7 +11,6 @@ create table exercises (
 	id SERIAL PRIMARY KEY NOT NULL,
 	exercise_name VARCHAR(50),
 	exercise_detail VARCHAR(255) NOT NULL,
-	user_id INT,
 	created_at timestamp default current_timestamp,
 	updated_at timestamp default current_timestamp
 	-- bodyPart
@@ -42,7 +41,6 @@ create table exercise_tracking (
 create table meals (
 	id SERIAL PRIMARY KEY NOT NULL,
 	meal_name VARCHAR(50) NOT NULL,
-	user_id INT,
 	created_at timestamp default current_timestamp,
 	updated_at timestamp default current_timestamp
 	-- calories

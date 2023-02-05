@@ -1,50 +1,50 @@
 --------------------------------------------------
 ------------EXERCISE TRACKING DATA----------------
 --------------------------------------------------
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (1, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (2, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (3, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (4, false,1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (5, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (6, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (7, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (8, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (9, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (10, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (11, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (12, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (13, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (14, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (15, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (16, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (17, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (18, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (19, false, 1647481862);
-insert into exercise_tracking (exercise_id, completion, exercise_date) values (20, false, 1647481862);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (1, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (2, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (3, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (4, false,1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (5, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (6, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (7, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (8, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (9, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (10, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (11, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (12, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (13, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (14, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (15, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (16, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (17, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (18, false, 1647481862, 1);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (19, false, 1647481862, 2);
+insert into exercise_tracking (exercise_id, completion, exercise_date, user_id) values (20, false, 1647481862, 1);
 
 ----------------------------------------------
 ------------MEALS TRACKING DATA---------------
 ----------------------------------------------
-insert into meals_tracker (meal_id, meal_date, completion) values (1, 1674869344, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (2, 1676578495, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (3, 1674098765, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (4, 1674453825, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (5, 1674087659, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (6, 1674234768, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (7, 1674098712, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (8, 1674432567, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (9, 167098734, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (10, 1674758694, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (11, 1674910235, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (12, 1674098562, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (13, 1674432879, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (14, 1674765492, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (15, 1674542098, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (16, 1674123098, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (17, 1674439708, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (18, 1674784021, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (19, 1674937204, false);
-insert into meals_tracker (meal_id, meal_date, completion) values (20, 1675649344, false);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (1, 1674869344, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (2, 1676578495, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (3, 1674098765, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (4, 1674453825, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (5, 1674087659, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (6, 1674234768, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (7, 1674098712, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (8, 1674432567, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (9, 167098734, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (10, 1674758694, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (11, 1674910235, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (12, 1674098562, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (13, 1674432879, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (14, 1674765492, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (15, 1674542098, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (16, 1674123098, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (17, 1674439708, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (18, 1674784021, false, 2);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (19, 1674937204, false, 1);
+insert into meals_tracker (meal_id, meal_date, completion, user_id) values (20, 1675649344, false, 2);
 
 -------------------------------------
 ------------EXERCISES DATA-----------
@@ -73,26 +73,26 @@ insert into exercises (exercise_name, exercise_detail) values ('Hip Thrust', '5 
 ---------------------------------
 ------------MEALS DATA-----------
 ---------------------------------
-insert into meals (meal_name, user_id) values ('Turkey Dinner', 1);
-insert into meals (meal_name, user_id) values ('Chicken Salad', 2);
-insert into meals (meal_name, user_id) values ('Apple', 1);
-insert into meals (meal_name, user_id) values ('Chicken Breast', 2);
-insert into meals (meal_name, user_id) values ('Egg Sandwich', 1);
-insert into meals (meal_name, user_id) values ('Pear', 2);
-insert into meals (meal_name, user_id) values ('Tuna Salad', 1);
-insert into meals (meal_name, user_id) values ('Tofu Noodles', 2);
-insert into meals (meal_name, user_id) values ('Grapes', 1);
-insert into meals (meal_name, user_id) values ('Squash Pasta', 2);
-insert into meals (meal_name, user_id) values ('Chicken Teriyaki', 1);
-insert into meals (meal_name, user_id) values ('Noodle Soup', 2);
-insert into meals (meal_name, user_id) values ('Overnight Oats', 1);
-insert into meals (meal_name, user_id) values ('Chia Seed Pudding', 2);
-insert into meals (meal_name, user_id) values ('Green Smoothie', 1);
-insert into meals (meal_name, user_id) values ('Chocolate Protein Shake', 2);
-insert into meals (meal_name, user_id) values ('Tuna Sandwich', 1);
-insert into meals (meal_name, user_id) values ('Turkey Sandwich', 1);
-insert into meals (meal_name, user_id) values ('Sushi', 2);
-insert into meals (meal_name, user_id) values ('Granola Yogurt', 2);
+insert into meals (meal_name) values ('Turkey Dinner');
+insert into meals (meal_name) values ('Chicken Salad');
+insert into meals (meal_name) values ('Apple');
+insert into meals (meal_name) values ('Chicken Breast');
+insert into meals (meal_name) values ('Egg Sandwich');
+insert into meals (meal_name) values ('Pear');
+insert into meals (meal_name) values ('Tuna Salad');
+insert into meals (meal_name) values ('Tofu Noodles');
+insert into meals (meal_name) values ('Grapes');
+insert into meals (meal_name) values ('Squash Pasta');
+insert into meals (meal_name) values ('Chicken Teriyaki');
+insert into meals (meal_name) values ('Noodle Soup');
+insert into meals (meal_name) values ('Overnight Oats');
+insert into meals (meal_name) values ('Chia Seed Pudding');
+insert into meals (meal_name) values ('Green Smoothie');
+insert into meals (meal_name) values ('Chocolate Protein Shake');
+insert into meals (meal_name) values ('Tuna Sandwich');
+insert into meals (meal_name) values ('Turkey Sandwich');
+insert into meals (meal_name) values ('Sushi');
+insert into meals (meal_name) values ('Granola Yogurt');
 ---------------------------------
 ------------USERS DATA-----------
 ---------------------------------
