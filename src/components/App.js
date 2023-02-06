@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
 import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
-
+import TopNav from "./TopNav";
 import CreateMeal from "./cards/createMeal";
 import CreateExercise from "./cards/createExercise";
 import OutlinedCardExcercise from "./OutlinedCardExcercise";
@@ -466,6 +466,8 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
+    <div>
+    <TopNav></TopNav>
     <main className="layout">
       <DaysNavigationBar
         daysArray={daysArray}
@@ -502,6 +504,7 @@ function App() {
         </div>
       </div>
     </main>
+    </div>
   );
 }
 
