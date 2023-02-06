@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Home from "./Home";
 
+// #efd9b4, #d6a692, #a39081, #4d6160, #292522
+
 const Navigation = () => {
   const [showHome, setShowHome] = useState(false);
   
