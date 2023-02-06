@@ -484,7 +484,7 @@ function App() {
             onClick={() => setModalIsOpen(true)}
           />
         </div>
-        <Form modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+        <Form schedule_obj={schedule_obj} modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
         <OutlinedCardExcercise excercises={excercises} />
       </section>
       <section className="meal">

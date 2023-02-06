@@ -46,6 +46,39 @@ router.get('/', (req, res) => {
 
 
 // route to add new exercises
+router.post('/exercise', (req, res) => {
+  let userid = req.body.userid;
+  let exercise_id = req.body.exercise_id;
+  let tracking_id = req.body.tracking_id;
 
+  db.addExercise({ exercise_id, tracking_id, userid }).then((result) => {
+    if (result) {
+      res.json(result);
+    } else {
+      res.json({ message: 'Error adding exercise' });
+    }
+  })
+    .catch((err) => {
+      console.log(err.message);
+      res.json({ message: 'Error adding exercise' });
+    });
+});
+
+router.delete('/exercise', (req, res) => {
+  let userid = req.body.userid;
+  let tracking_id = req.body.tracking_id;
+
+  db.deleteExercise({ tracking_id, userid }).then((result) => {
+    if (result) {
+      res.json(result);
+    } else {
+      res.json({ message: 'Error deleting exercise' });
+    }
+  })
+    .catch((err) => {
+      console.log(err.message);
+      res.json({ message: 'Error deleting exercise' });
+    });
+});
 
 module.exports = router;
