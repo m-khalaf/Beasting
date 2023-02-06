@@ -25,6 +25,7 @@ const DeleteIcon = () => (
 );
 
 export default function OutlinedCardMeal(props) {
+  console.log("+++++++++++++props", props);
   const card = props.meals.map((meal) => {
     return (
       <React.Fragment className="card-container">
