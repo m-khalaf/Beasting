@@ -1,6 +1,12 @@
 import { useState } from "react";
+import Modal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function CreateMeal({ onCreateMeal }) {
+export default function CreateMeal({
+  onCreateMeal,
+  modalIsOpen,
+  setModalIsOpen,
+}) {
   const [mealName, setMealName] = useState("");
   const handleChange = (event) => {
     setMealName(event.target.value);
@@ -13,11 +19,18 @@ export default function CreateMeal({ onCreateMeal }) {
 
   return (
     <div>
-      <form onSubmit={handleSumbit}>
-        <label>Create Meal</label>
-        <input value={mealName} onChange={handleChange} />
-        <button>Create </button>
-      </form>
+      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+        <form onSubmit={handleSumbit}>
+          <label class="form-label">Create Meal</label>
+          <input
+            class="form-control"
+            value={mealName}
+            onChange={handleChange}
+          />
+          <div class="p-2"></div>
+          <button class="btn btn-outline-primary">Create </button>
+        </form>
+      </Modal>
     </div>
   );
 }
