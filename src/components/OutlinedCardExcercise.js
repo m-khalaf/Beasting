@@ -9,6 +9,18 @@ import { Switch, Grid } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "../styles/OutlinedCard.css";
+import axios from "axios";
+
+const handleDelete = (trackingId) => {
+  axios
+    .delete(`/edelete/${trackingId}`)
+    .then((res) => {
+      console.log("sucsss");
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 const EditIcon = () => {
   return (
@@ -18,9 +30,13 @@ const EditIcon = () => {
   );
 };
 
-const DeleteIcon = () => (
+const DeleteIcon = (props) => (
   <div>
-    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" />
+    <FontAwesomeIcon
+      icon={faTrashAlt}
+      className="fa-trash-alt"
+      onClick={() => handleDelete(props.tracking_id)}
+    />
   </div>
 );
 
@@ -42,7 +58,7 @@ export default function OutlinedCard(props) {
                 </Grid>
               </Grid.Container>
               <EditIcon />
-              <DeleteIcon />
+              <DeleteIcon tracking_id={excercise.tracking_id} />
             </CardActions>
           </Typography>
         </CardContent>
