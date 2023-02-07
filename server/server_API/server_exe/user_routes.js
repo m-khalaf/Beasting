@@ -14,13 +14,10 @@ router.get('/', (req, res) => {
     if(meals.length !== 0) {
       db.getExercises().then((exercises) => {
         if(exercises.length !== 0) {
-          //Parsing data and sending it to the user.
-          // res.json(helper.schedule(meals, excerises, 1674869344));
           db.getExercisesTrack(userid).then((exerTrack) => {
             db.getMealsTrack(userid).then((mealTrack) => {
               console.log({ meals, exercises, exerTrack, mealTrack });
               res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
-              // // res.json({ meals, exercises, exerTrack, mealTrack });
             })
           })
           
@@ -35,7 +32,7 @@ router.get('/', (req, res) => {
   })
 })
 
-// http://localhost:8080/home/edelete/:trackingId
+// http://localhost:8000/home/edelete/:trackingId
 router.delete('/edelete/:trackingId', (req, res) => {
   const trackingId = req.params.trackingId;
   const userId = 1;
@@ -63,7 +60,7 @@ router.delete('/edelete/:trackingId', (req, res) => {
     .catch(err => res.json(err));
 });
 
-// http://localhost:8080/home/mdelete/:trackingId
+// http://localhost:8000/home/mdelete/:trackingId
 router.delete('/mdelete/:trackingId', (req, res) => {
   const trackingId = req.params.trackingId;
   const userId = 1;
@@ -146,7 +143,6 @@ router.post('/mcomp/:trackingId', (req, res) => {
     })
     .catch(err => res.json(err));
 });
-// [...meal, { id: 123, meal_name: mealName }];
 
 // route to use a preset
 
