@@ -91,7 +91,61 @@ router.delete('/mdelete/:trackingId', (req, res) => {
     .catch(err => res.json(err));
 });
 
+
+router.post('/excomp/:trackingId', (req, res) => {
+  const trackingId = req.params.trackingId;
+  const userId = 1;
+  
+  db.completeExerciseTracking(trackingId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
 // route to edit meal schedule
+
+router.post('/mcomp/:trackingId', (req, res) => {
+  const trackingId = req.params.trackingId;
+  const userId = 1;
+  
+  db.completeMealTracking(trackingId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
 // [...meal, { id: 123, meal_name: mealName }];
 
 // route to use a preset
