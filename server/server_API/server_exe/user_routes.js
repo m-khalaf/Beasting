@@ -146,7 +146,4 @@ router.post('/mcomp/:trackingId', (req, res) => {
 
 // route to use a preset
 
-
-
-
 module.exports = router;
