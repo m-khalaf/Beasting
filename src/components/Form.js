@@ -88,6 +88,9 @@ const Form = (props) => {
                 transition: 'background-color 0.2s ease-in-out',
                 cursor: 'pointer'
                 }}
+                onClick={() => {
+                  setExercise({ name: exercise.exercise_name, description: exercise.exercise_detail });
+                }}
                 onMouseEnter={(e) => e.target.style.backgroundColor = 'orange'}
                 onMouseLeave={(e) => e.target.style.backgroundColor = '#dee3e0'}
                 key={index}>
