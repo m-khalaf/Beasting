@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
         if(exercises.length !== 0) {
           db.getExercisesTrack(userid).then((exerTrack) => {
             db.getMealsTrack(userid).then((mealTrack) => {
-              console.log({ meals, exercises, exerTrack, mealTrack });
+              
               res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
             })
           })
@@ -64,7 +64,7 @@ router.delete('/edelete/:trackingId', (req, res) => {
 router.delete('/mdelete/:trackingId', (req, res) => {
   const trackingId = req.params.trackingId;
   const userId = 1;
-  
+  console.log('++--', res.params)
   db.deleteMealTracking(trackingId, userId)
     .then(() => {
       db.getMeals().then((meals) => {
@@ -88,11 +88,14 @@ router.delete('/mdelete/:trackingId', (req, res) => {
     .catch(err => res.json(err));
 });
 
-
-router.post('/excomp/:trackingId', (req, res) => {
-  const trackingId = req.params.trackingId;
-  const userId = 1;
+// http://localhost:8000/home/excomplete/
+router.post('/excomplete/', (req, res) => {
   
+  const trackingId = req.body.trackingId;
+  const userId = 1;
+
+  console.log(req.body)
+
   db.completeExerciseTracking(trackingId)
     .then(() => {
       db.getMeals().then((meals) => {
@@ -117,8 +120,8 @@ router.post('/excomp/:trackingId', (req, res) => {
 });
 // route to edit meal schedule
 
-router.post('/mcomp/:trackingId', (req, res) => {
-  const trackingId = req.params.trackingId;
+router.post('/mcomplete/', (req, res) => {
+  const trackingId = req.body.trackingId;
   const userId = 1;
   
   db.completeMealTracking(trackingId)
