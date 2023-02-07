@@ -8,7 +8,6 @@ const {schedule} = require('./helper')
 
 // This will load our initial load on every page refresh
 router.get('/', (req, res) => {
-  
   let userid = 1;
   db.getMeals().then((meals) => {
 
@@ -36,8 +35,61 @@ router.get('/', (req, res) => {
   })
 })
 
-// route to edit food schedhule
+// http://localhost:8080/home/edelete/:trackingId
+router.delete('/edelete/:trackingId', (req, res) => {
+  const trackingId = req.params.trackingId;
+  const userId = 1;
+  
+  db.deleteExerciseTracking(trackingId, userId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
 
+// http://localhost:8080/home/mdelete/:trackingId
+router.delete('/mdelete/:trackingId', (req, res) => {
+  const trackingId = req.params.trackingId;
+  const userId = 1;
+  
+  db.deleteMealTracking(trackingId, userId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
 
 // route to edit meal schedule
 // [...meal, { id: 123, meal_name: mealName }];
@@ -45,40 +97,6 @@ router.get('/', (req, res) => {
 // route to use a preset
 
 
-// route to add new exercises
-router.post('/exercise', (req, res) => {
-  let userid = req.body.userid;
-  let exercise_id = req.body.exercise_id;
-  let tracking_id = req.body.tracking_id;
 
-  db.addExercise({ exercise_id, tracking_id, userid }).then((result) => {
-    if (result) {
-      res.json(result);
-    } else {
-      res.json({ message: 'Error adding exercise' });
-    }
-  })
-    .catch((err) => {
-      console.log(err.message);
-      res.json({ message: 'Error adding exercise' });
-    });
-});
-
-router.delete('/exercise', (req, res) => {
-  let userid = req.body.userid;
-  let tracking_id = req.body.tracking_id;
-
-  db.deleteExercise({ tracking_id, userid }).then((result) => {
-    if (result) {
-      res.json(result);
-    } else {
-      res.json({ message: 'Error deleting exercise' });
-    }
-  })
-    .catch((err) => {
-      console.log(err.message);
-      res.json({ message: 'Error deleting exercise' });
-    });
-});
 
 module.exports = router;
