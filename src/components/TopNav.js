@@ -8,14 +8,6 @@ import Button from "@mui/material/Button";
 const Navigation = () => {
   const [showHome, setShowHome] = useState(false);
 
-  const logoutStyles = {
-    // color: "#efd9b4",
-    // fontSize: "15px",
-    // cursor: "pointer",
-    // backgroundColor: "#453e3b",
-    // marginLeft: "8px",
-  };
-
   return (
     <div>
       <div className="containerStyles">
