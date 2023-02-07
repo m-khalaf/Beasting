@@ -20,7 +20,7 @@ export default function CreateMeal({
   }, [mealName, schedule_obj.meals]);
 
   console.log(sortMeals(schedule_obj.meals, mealName));
-  const handleSumbit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     onCreateMeal(mealName);
     setModalMealIsOpen(false);
@@ -30,7 +30,7 @@ export default function CreateMeal({
   return (
     <div>
       <Modal isOpen={modalMealIsOpen}>
-        <form onSubmit={handleSumbit}>
+        <form onSubmit={handleSubmit}>
           <label class="form-label">Create Meal</label>
           <input
             class="form-control"
@@ -59,12 +59,12 @@ export default function CreateMeal({
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#F6F6F6")}
               key={index}
               onClick={() => {
-                setMealName({
-                  mealName: meals.meal_name,
-                });
+                setMealName(
+                  meals.meal_name,
+                );
               }}
             >
-              {meals.meal_name}
+              {meals.meal_name}:{meals.meal_name}
             </button>
           ))}
         </div>

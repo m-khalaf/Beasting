@@ -1,4 +1,5 @@
 const sortExercises = (exerciseArray, stringToMatch) => {
+  console.log(exerciseArray)
   return exerciseArray.sort((a, b) => {
     const aMatch = a.exercise_name
       .toLowerCase()
@@ -23,6 +24,7 @@ const sortExercises = (exerciseArray, stringToMatch) => {
 };
 
 const sortMeals = (mealsArray, stringToMatch) => {
+  console.log(mealsArray)
   return mealsArray.sort((a, b) => {
     const aMatch = a.meal_name
       .toLowerCase()
