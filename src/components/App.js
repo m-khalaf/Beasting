@@ -464,8 +464,6 @@ function App() {
 
   const meals = getMealForDay(schedule_obj, day);
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
   return (
     <div>
       <TopNav></TopNav>
@@ -488,11 +486,9 @@ function App() {
             />
           </div>
           <CreateExercise
-            modalIsOpen={modalExerciseIsOpen}
-            setModalIsOpen={setModalExerciseIsOpen}
+            modalExerciseIsOpen={modalExerciseIsOpen}
+            setModalExerciseIsOpen={setModalExerciseIsOpen}
             onCreateExercise={handleCreateExercise}
-            exercise={exercise}
-            setExercise={setExercise}
             schedule_obj={schedule_obj}
           />
           <OutlinedCardExcercise excercises={excercises} />
@@ -502,14 +498,17 @@ function App() {
             <span>Meals</span>
             <FontAwesomeIcon
               icon={faPlus}
-              onClick={() => setModalMealIsOpen(true)}
+              onClick={() => {
+                setModalMealIsOpen(true);
+              }}
               className="faPlus"
             />
           </div>
           <CreateMeal
-            modalIsOpen={modalMealIsOpen}
-            setModalIsOpen={setModalMealIsOpen}
-            onCreateExercise={handleCreateMeal}
+            modalMealIsOpen={modalMealIsOpen}
+            setModalMealIsOpen={setModalMealIsOpen}
+            onCreateMeal={handleCreateMeal}
+            schedule_obj={schedule_obj}
           />
           <OutlinedCardMeal meals={meals} />
         </section>

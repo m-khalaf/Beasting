@@ -5,8 +5,8 @@ import { sortExercises, filterExercises } from "../../helpers/sort";
 
 export default function CreateExercise({
   onCreateExercise,
-  modalIsOpen,
-  setModalIsOpen,
+  modalExerciseIsOpen,
+  setModalExerciseIsOpen,
   schedule_obj,
 }) {
   const [formData, setFormData] = useState({
@@ -34,13 +34,13 @@ export default function CreateExercise({
     event.preventDefault();
     onCreateExercise(formData);
     setFormData({ name: "", description: "" });
-    setModalIsOpen(false);
+    setModalExerciseIsOpen(false);
   };
 
-  const onRequestClose = () => setModalIsOpen(false);
+  const onRequestClose = () => setModalExerciseIsOpen(false);
   return (
     <div>
-      <Modal isOpen={modalIsOpen}>
+      <Modal isOpen={modalExerciseIsOpen}>
         <form onSubmit={onHandleSubmit}>
           <div class="row mb-3">
             <label class="col-sm-2 col-form-label">Create Exercise</label>
@@ -69,7 +69,7 @@ export default function CreateExercise({
           <button class="btn btn-outline-primary mx-2" type="submit">
             Save
           </button>
-          <button class="btn btn-outline-primary mx-2" onclick={onRequestClose}>
+          <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>
             Close
           </button>
         </form>

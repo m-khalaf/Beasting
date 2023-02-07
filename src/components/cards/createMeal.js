@@ -1,25 +1,35 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { sortMeals } from "../../helpers/sort";
 
 export default function CreateMeal({
   onCreateMeal,
-  modalIsOpen,
-  setModalIsOpen,
+  modalMealIsOpen,
+  setModalMealIsOpen,
+  schedule_obj,
 }) {
   const [mealName, setMealName] = useState("");
+  const [sortedMeals, setSortedMeals] = useState(schedule_obj.meals);
+
   const handleChange = (event) => {
     setMealName(event.target.value);
   };
 
+  useEffect(() => {
+    setSortedMeals(sortMeals(schedule_obj.meals, mealName));
+  }, [mealName, schedule_obj.meals]);
+
+  console.log(sortMeals(schedule_obj.meals, mealName));
   const handleSumbit = (event) => {
     event.preventDefault();
     onCreateMeal(mealName);
+    setModalMealIsOpen(false);
   };
 
+  const onRequestClose = () => setModalMealIsOpen(false);
   return (
     <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+      <Modal isOpen={modalMealIsOpen}>
         <form onSubmit={handleSumbit}>
           <label class="form-label">Create Meal</label>
           <input
@@ -28,8 +38,36 @@ export default function CreateMeal({
             onChange={handleChange}
           />
           <div class="p-2"></div>
-          <button class="btn btn-outline-primary">Create </button>
+          <button class="btn btn-outline-primary mx-2">Save</button>
+          <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>
+            Close
+          </button>
         </form>
+        <div
+          style={{
+            width: "90%",
+            height: "30px",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        ></div>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {sortedMeals.map((meals, index) => (
+            <button
+              class="btn btn-light"
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "orange")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#F6F6F6")}
+              key={index}
+              onClick={() => {
+                setMealName({
+                  mealName: meals.meal_name,
+                });
+              }}
+            >
+              {meals.meal_name}
+            </button>
+          ))}
+        </div>
       </Modal>
     </div>
   );

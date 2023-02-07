@@ -22,10 +22,28 @@ const sortExercises = (exerciseArray, stringToMatch) => {
   });
 };
 
-const filterExercises = (arr, name) => {
-  return arr.filter(function (item) {
-    return item.name === name;
+const sortMeals = (mealsArray, stringToMatch) => {
+  return mealsArray.sort((a, b) => {
+    const aMatch = a.meal_name
+      .toLowerCase()
+      .includes(stringToMatch.toLowerCase());
+    const bMatch = b.meal_name
+      .toLowerCase()
+      .includes(stringToMatch.toLowerCase());
+
+    if (aMatch && !bMatch) return -1;
+    if (!aMatch && bMatch) return 1;
+    if (!aMatch && !bMatch) return 0;
+
+    const aIndex = a.meal_name
+      .toLowerCase()
+      .indexOf(stringToMatch.toLowerCase());
+    const bIndex = b.meal_name
+      .toLowerCase()
+      .indexOf(stringToMatch.toLowerCase());
+
+    return aIndex - bIndex;
   });
 };
 
-export { sortExercises, filterExercises };
+export { sortExercises, sortMeals };
