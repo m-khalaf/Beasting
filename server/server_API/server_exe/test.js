@@ -1,4 +1,4 @@
-let schedule_obj = {
+const schedule = {
   meals: [
     {
       id: 1,
@@ -209,7 +209,7 @@ let schedule_obj = {
       exercise_name: "Bicep Curl",
       exercise_detail: "3 sets of 15 reps",
       tracking_id: 2,
-      completion: false,
+      completion: true,
       exercise_date: "Tuesday",
     },
     {
@@ -287,27 +287,23 @@ let schedule_obj = {
       completion: false,
     },
   ],
-};
+}
 
-const getexcerciseForDay = function (state, day) {
-  const exercises = state.exerTrack.filter((exc) => exc.exercise_date.split(' ')[0] === day);
-  console.log(exercises);
-  return exercises;
-};
+function sortExercises(exerciseArray, stringToMatch) {
+  return exerciseArray.sort((a, b) => {
+    const aMatch = a.exercise_name.toLowerCase().includes(stringToMatch.toLowerCase());
+    const bMatch = b.exercise_name.toLowerCase().includes(stringToMatch.toLowerCase());
+    
+    if (aMatch && !bMatch) return -1;
+    if (!aMatch && bMatch) return 1;
+    if (!aMatch && !bMatch) return 0;
+    
+    const aIndex = a.exercise_name.toLowerCase().indexOf(stringToMatch.toLowerCase());
+    const bIndex = b.exercise_name.toLowerCase().indexOf(stringToMatch.toLowerCase());
+    
+    return aIndex - bIndex;
+  });
+}
 
-const getMealForDay = function (state, day) {
-  const meals = state.mealTrack.filter((meal) => meal.meal_date.split(' ')[0] === day);
-  console.log(meals)
-  return meals;
-};
-
-const dayFromValue = function (value) {
-  if (value === 0) return "Monday";
-  if (value === 1) return "Tuesday";
-  if (value === 2) return "Wednesday";
-  if (value === 3) return "Thursday";
-  if (value === 4) return "Friday";
-  if (value === 5) return "Saturday";
-  if (value === 6) return "Sunday";
-};
-export { getexcerciseForDay, getMealForDay, dayFromValue };
+console.log(sortExercises(schedule.exercises, 'Ches'))
+  

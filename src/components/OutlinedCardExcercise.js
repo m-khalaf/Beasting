@@ -7,8 +7,20 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Switch, Grid } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faEdit, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faEdit, faPlus, faL } from "@fortawesome/free-solid-svg-icons";
 import "../styles/OutlinedCard.css";
+import axios from "axios";
+
+// const handleDelete = (id) => {
+//   axios
+//   .delete(`http://localhost:8000/home/edelete/${id}`)
+//   .then((res) => {
+//   console.log("Completion status updated successfully", id);
+//   })
+//   .catch((err) => {
+//   console.error(err);
+//   });
+// };
 
 const EditIcon = () => {
   return (
@@ -18,13 +30,42 @@ const EditIcon = () => {
   );
 };
 
-const DeleteIcon = () => (
+const handleCompletion = (trackingId, completion) => {
+  axios
+  .post(`http://localhost:8000/home/excomplete/`, { completion: !completion, trackingId: trackingId })
+  .then((res) => {
+  console.log("Completion status updated successfully", res.data);
+  })
+  .catch((err) => {
+  console.error(err);
+  });
+};
+
+const DeleteIcon = (props) => (
   <div>
-    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" />
+    <FontAwesomeIcon
+      icon={faTrashAlt}
+      className="fa-trash-alt"
+      onClick={props.onClick}
+    />
   </div>
 );
 
 export default function OutlinedCard(props) {
+  
+  const [exercises, setExercises] = React.useState(props.excercises);
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:8000/home/edelete/${id}`)
+      .then(() => {
+        console.log("Deleted successfully", id);
+        setExercises(exercises.filter((ex) => ex.tracking_id !== id));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
   const card = props.excercises.map((excercise) => {
     return (
       <React.Fragment className="card-container">
@@ -38,11 +79,17 @@ export default function OutlinedCard(props) {
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Switch color="success" checked={excercise.completion} />
+                  <Switch color="success" checked={excercise.completion} 
+                  onClick={() =>{
+                    handleCompletion(excercise.tracking_id, excercise.completion)
+                  }
+                  }/>
                 </Grid>
               </Grid.Container>
               <EditIcon />
-              <DeleteIcon />
+              <DeleteIcon tracking_id={excercise.tracking_id} 
+              onClick={() => handleDelete(excercise.tracking_id)}
+              />
             </CardActions>
           </Typography>
         </CardContent>
