@@ -105,7 +105,7 @@ export default function OutlinedCard(props) {
 
           <Typography variant="body2">
             {excercise.exercise_detail}
-            <CardActions className="card-actions">
+            <CardActions className="card-actions bottom-div">
               <Grid.Container>
                 <Grid>
                   <Switch
