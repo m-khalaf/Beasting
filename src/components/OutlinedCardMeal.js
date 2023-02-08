@@ -6,6 +6,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Switch, Grid } from "@nextui-org/react";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 import "../styles/OutlinedCard.css";
@@ -18,10 +19,37 @@ const EditIcon = () => {
   );
 };
 
-const DeleteIcon = () => (
+const handleCompletion = (trackingId, completion) => {
+  axios
+  .post(`http://localhost:8000/home/mcomplete/`, { completion: !completion, trackingId: trackingId })
+  .then((res) => {
+  console.log("Completion status updated successfully", res.data);
+  })
+  .catch((err) => {
+  console.error(err);
+  });
+};
+
+const deleteMeal = (id) => {
+  axios
+  .delete(`http://localhost:8000/home/mdelete/${id}`)
+  .then((res) => {
+  console.log("Completion status updated successfully", id);
+  })
+  .catch((err) => {
+  console.error(err);
+  });
+}
+
+const DeleteIcon = (id) => (
   <div>
-    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" />
+    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" 
+    onClick={() => {
+      deleteMeal(id.id)
+    }}
+    />
   </div>
+  
 );
 
 export default function OutlinedCardMeal(props) {
@@ -38,11 +66,18 @@ export default function OutlinedCardMeal(props) {
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Switch color="success" checked={meal.completion} />
+                  <Switch color="success" checked={meal.completion} 
+                  onClick={() =>{
+                    handleCompletion(meal.tracking_id, meal.completion)
+                  }}
+                  />
                 </Grid>
               </Grid.Container>
               <EditIcon />
-              <DeleteIcon />
+              <DeleteIcon 
+              id = {meal.tracking_id}
+              
+              />
             </CardActions>
           </Typography>
         </CardContent>
