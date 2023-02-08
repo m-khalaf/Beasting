@@ -359,10 +359,9 @@ function App() {
   const [exercise, setExercise] = useState([]);
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    console.log("Hello");
-
     axios.get("http://localhost:8000/home/").then((response) => {
       const daysObject = {
         Monday: {
@@ -426,18 +425,13 @@ function App() {
         daysArray1.push(daysObject[days]);
       }
 
-      console.log(daysArray1);
       setDaysArray(daysArray1);
     });
-  }, []);
-
-  console.log("----------", schedule_obj, "----------");
-  console.log("++++++++", daysArray, "++++++");
+  }, [refresh]);
 
   // this section describes the creating of new exercis and new meals
   // new meal section
   const handleCreateMeal = (mealName) => {
-    console.log(mealName);
     const updateMeals = [...meal, { id: 123, meal_name: mealName }];
     console.log("new Meal array", updateMeals);
     setMeal(updateMeals);
@@ -491,7 +485,11 @@ function App() {
             onCreateExercise={handleCreateExercise}
             schedule_obj={schedule_obj}
           />
-          <OutlinedCardExcercise excercises={excercises} />
+          <OutlinedCardExcercise
+            excercises={excercises}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
         </section>
         <section className="meal">
           <div>
@@ -510,7 +508,11 @@ function App() {
             onCreateMeal={handleCreateMeal}
             schedule_obj={schedule_obj}
           />
-          <OutlinedCardMeal meals={meals} />
+          <OutlinedCardMeal
+            meals={meals}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
         </section>
         <div class="smiley-face" data-score="50">
           <div class="smiley-face-inner">
