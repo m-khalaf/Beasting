@@ -21,35 +21,40 @@ const EditIcon = () => {
 
 const handleCompletion = (trackingId, completion) => {
   axios
-  .post(`http://localhost:8000/home/mcomplete/`, { completion: !completion, trackingId: trackingId })
-  .then((res) => {
-  console.log("Completion status updated successfully", res.data);
-  })
-  .catch((err) => {
-  console.error(err);
-  });
+    .post(`http://localhost:8000/home/mcomplete/`, {
+      completion: !completion,
+      trackingId: trackingId,
+    })
+    .then((res) => {
+      console.log("Completion status updated successfully", res.data);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 };
 
 const deleteMeal = (id) => {
   axios
-  .delete(`http://localhost:8000/home/mdelete/${id}`)
-  .then((res) => {
-  console.log("Completion status updated successfully", id);
-  })
-  .catch((err) => {
-  console.error(err);
-  });
-}
+    .delete(`http://localhost:8000/home/mdelete/${id}`)
+    .then((res) => {
+      console.log("Completion status updated successfully", id);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
-const DeleteIcon = (id) => (
+const DeleteIcon = (props) => (
   <div>
-    <FontAwesomeIcon icon={faTrashAlt} className="fa-trash-alt" 
-    onClick={() => {
-      deleteMeal(id.id)
-    }}
+    <FontAwesomeIcon
+      icon={faTrashAlt}
+      className="fa-trash-alt"
+      onClick={() => {
+        deleteMeal(props.id);
+        props.setRefresh(props.refresh + 1);
+      }}
     />
   </div>
-  
 );
 
 export default function OutlinedCardMeal(props) {
@@ -66,17 +71,20 @@ export default function OutlinedCardMeal(props) {
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Switch color="success" checked={meal.completion} 
-                  onClick={() =>{
-                    handleCompletion(meal.tracking_id, meal.completion)
-                  }}
+                  <Switch
+                    color="success"
+                    checked={meal.completion}
+                    onClick={() => {
+                      handleCompletion(meal.tracking_id, meal.completion);
+                    }}
                   />
                 </Grid>
               </Grid.Container>
               <EditIcon />
-              <DeleteIcon 
-              id = {meal.tracking_id}
-              
+              <DeleteIcon
+                id={meal.tracking_id}
+                refresh={props.refresh}
+                setRefresh={props.setRefresh}
               />
             </CardActions>
           </Typography>
