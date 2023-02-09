@@ -11,7 +11,7 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Form from "./Form";
+
 
 // let schedule_obj = {
 // };
@@ -363,7 +363,6 @@ function App() {
 
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
-      console.log(response.data)
       setSchedule_obj(response.data);
       
     });
@@ -372,24 +371,15 @@ function App() {
   // this section describes the creating of new exercis and new meals
   // new meal section
   const handleCreateMeal = (mealName) => {
-    const updateMeals = [...meal, { id: 123, meal_name: mealName }];
+
     
-    setMeal(updateMeals);
+    setMeal([]);
   };
 
   // new exercise section
-  const handleCreateExercise = (formData) => {
-    
-    const updateExercise = [
-      ...exercise,
-      {
-        id: 123,
-        exercise_name: formData.exerciseName,
-        exercise_detail: formData.exerciseDetail,
-      },
-    ];
-    console.log("new exericse array", updateExercise);
-    setExercise(updateExercise);
+  const handleCreateExercise = () => {
+
+    setExercise([]);
   };
   
   // this section describes the creating of new exercis and new meals END
@@ -424,6 +414,8 @@ function App() {
             setModalExerciseIsOpen={setModalExerciseIsOpen}
             onCreateExercise={handleCreateExercise}
             schedule_obj={schedule_obj}
+            refresh={refresh}
+            setRefresh={setRefresh}
           />
           <OutlinedCardExcercise
             excercises={excercises}
@@ -447,6 +439,8 @@ function App() {
             setModalMealIsOpen={setModalMealIsOpen}
             onCreateMeal={handleCreateMeal}
             schedule_obj={schedule_obj}
+            refresh={refresh}
+            setRefresh={setRefresh}
           />
           <OutlinedCardMeal
             meals={meals}

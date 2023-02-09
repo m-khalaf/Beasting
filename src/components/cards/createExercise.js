@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { sortExercises, filterExercises } from "../../helpers/sort";
+import { sortExercises } from "../../helpers/sort";
 
 export default function CreateExercise({
   onCreateExercise,
   modalExerciseIsOpen,
   setModalExerciseIsOpen,
   schedule_obj,
+  refresh,
+  setRefresh
 }) {
   const [formData, setFormData] = useState({
     exerciseName: "",
@@ -19,12 +21,14 @@ export default function CreateExercise({
   );
 
   useEffect(() => {
-    setSortedExercises(
+    console.log(schedule_obj)
+    return setSortedExercises(
       sortExercises(schedule_obj.exercises, formData.exerciseName)
     );
-  }, [formData, schedule_obj.exercises]);
+  }, [formData]);
 
   const onHandleChange = (event) => {
+    // event.preventDefault();
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
@@ -34,7 +38,7 @@ export default function CreateExercise({
   const onHandleSubmit = (event) => {
     event.preventDefault();
     onCreateExercise(formData);
-    setFormData({ name: "", description: "" });
+    // setFormData({ name: "", description: "" });
     setModalExerciseIsOpen(false);
   };
 
@@ -47,6 +51,8 @@ export default function CreateExercise({
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);
+          setRefresh(refresh + 1)
+          onRequestClose()
         })
         .catch((err) => {
           console.error(err);

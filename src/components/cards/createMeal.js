@@ -8,6 +8,8 @@ export default function CreateMeal({
   modalMealIsOpen,
   setModalMealIsOpen,
   schedule_obj,
+  refresh,
+  setRefresh
 }) {
   const [mealName, setMealName] = useState("");
   const [sortedMeals, setSortedMeals] = useState(schedule_obj.meals);
@@ -24,6 +26,8 @@ export default function CreateMeal({
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);
+          setRefresh(refresh + 1)
+          onRequestClose()
         })
         .catch((err) => {
           console.error(err);
@@ -33,9 +37,9 @@ export default function CreateMeal({
 
   useEffect(() => {
     setSortedMeals(sortMeals(schedule_obj.meals, mealName));
-  }, [mealName, schedule_obj.meals]);
+  }, [mealName]);
 
-  console.log(sortMeals(schedule_obj.meals, mealName));
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     onCreateMeal(mealName);
@@ -76,7 +80,7 @@ export default function CreateMeal({
               key={index}
               onClick={() => {
                 setMealName(
-                  meals.meal_name,
+                  meals.meal_name
                 );
               }}
             >

@@ -9,7 +9,7 @@ module.exports = {
   // aggregate the meals from the two meal tables
   getMeals:() => {
     return pool.query(
-      `SELECT * from meals`
+      `SELECT id, meal_name from meals;`
     )
       .then((result) => {
         
@@ -32,7 +32,7 @@ module.exports = {
   // aggregate the excerises from the two meal tables
   getExercises:() => {
     return pool.query(
-      `Select * from exercises`
+      `Select id, exercise_name, exercise_detail from exercises`
     )
       .then((result) => {
         // console.log(result)
