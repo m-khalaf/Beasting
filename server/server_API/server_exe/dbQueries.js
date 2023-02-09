@@ -9,7 +9,7 @@ module.exports = {
   // aggregate the meals from the two meal tables
   getMeals:() => {
     return pool.query(
-      `SELECT * from meals`
+      `SELECT id, meal_name from meals;`
     )
       .then((result) => {
         
@@ -32,7 +32,7 @@ module.exports = {
   // aggregate the excerises from the two meal tables
   getExercises:() => {
     return pool.query(
-      `Select * from exercises`
+      `Select id, exercise_name, exercise_detail from exercises`
     )
       .then((result) => {
         // console.log(result)
@@ -55,11 +55,9 @@ module.exports = {
 
   getExercisesTrack: (userid) => {
     let queryString = 
-    `SELECT exercise_name, exercise_detail, exercise_tracking.id AS tracking_id, completion, exercise_date
-    FROM exercises
-    JOIN exercise_tracking
-    ON exercise_tracking.exercise_id = exercises.id
-    WHERE exercise_tracking.user_id = $1;
+    `SELECT exercise_name, exercise_detail, id AS tracking_id, completion, exercise_date
+    FROM exercise_tracking
+    WHERE user_id = $1;
     `;
 
     const values = [`${userid}`];
@@ -85,10 +83,8 @@ module.exports = {
 
   getMealsTrack:(userid) => {
     return pool.query(
-      `SELECT meals.meal_name, MEALS_TRACKER.id as tracking_id, MEALS_TRACKER.meal_date, MEALS_TRACKER.completion 
-      FROM meals
-      JOIN MEALS_TRACKER 
-      ON MEALS_TRACKER.meal_id = meals.id
+      `SELECT meal_name, id as tracking_id, meal_date, completion 
+      FROM MEALS_TRACKER 
       WHERE meals_tracker.user_id = $1;
     `, [userid]
     )
@@ -110,11 +106,28 @@ module.exports = {
       });
   },
 
-  // Add new exercise
-  addNewExercise: (exercise_name, exercise_detail) => {
+  
+
+  saveExercise: (exercise_name, exercise_detail, completion, exercise_date, user_id) => {
     return pool.query(
-      `INSERT INTO exercises (exercise_name, exercise_detail)
-      VALUES ($1, $2)`, [exercise_name, exercise_detail]
+      `
+        INSERT INTO exercise_tracking (exercise_name, exercise_detail, completion, exercise_date, user_id)
+        VALUES ($1, $2, $3, $4, $5)
+      `, [exercise_name, exercise_detail, completion, exercise_date, user_id]
+    )
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  },
+
+  saveMeal: (meal_date, meal_name, completion, user_id) => {
+    return pool.query(
+      `
+      insert into meals_tracker (meal_name, meal_date, completion, user_id) values ($2, $1, $3, $4);
+      `, [meal_date, meal_name, completion, user_id]
     )
       .then((result) => {
         return result;
@@ -124,19 +137,7 @@ module.exports = {
       });
   },
   
-  // Add new meal
-  addNewMeal: (meal_name) => {
-    return pool.query(
-      `INSERT INTO meals (meal_name)
-      VALUES ($1)`, [meal_name]
-    )
-      .then((result) => {
-        return result;
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  },
+ 
   
   // Complete meal tracking
   completeMealTracking: (tracking_id) => {

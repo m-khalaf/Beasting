@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .cat {
+        width: 300px;
+        height: 200px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="cat" id="cat"></canvas>
+    <script>
+      const canvas = document.getElementById("cat");
+      const ctx = canvas.getContext("2d");
+      let expression = "default";
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "1") {
+          expression = "mad";
+        } else if (event.key === "2") {
+          expression = "sleepy";
+        } else if (event.key === "3") {
+          expression = "happy";
+        } else if (event.key === "4") {
+          expression = "overjoyed";
+        }
+      });
+
+      function drawCat() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.arc(150, 100, 50, 0, 2 * Math.PI);
+        ctx.fillStyle = "orange";
+        ctx.fill();
+        ctx.closePath();
+        
+        ctx.beginPath();
+        ctx.arc(120, 80, 10, 0, 2 * Math.PI);
+        ctx.arc(180, 80, 10, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        if (expression === "mad") {
+          ctx.arc(150, 90, 20, 0.5 * Math.PI, 1.5 * Math.PI, true);
+        } else if (expression === "sleepy") {
+          ctx.arc(150, 90, 20, 0.5 * Math.PI, 0.7 * Math.PI);
+        } else if (expression === "happy") {
+          ctx.arc(150, 90, 20, 0.3 * Math.PI, 1.7 * Math.PI);
+        } else if (expression === "overjoyed") {
+          ctx.arc(150, 90, 20, 0, 2 * Math.PI);
+        }
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.closePath();
+
+        requestAnimationFrame(drawCat);
+      }
+
+      drawCat();
+    </script>
+  </body>
+</html>

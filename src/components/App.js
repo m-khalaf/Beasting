@@ -11,7 +11,7 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import Form from "./Form";
+
 
 // let schedule_obj = {
 // };
@@ -354,110 +354,31 @@ function App() {
       },
     ],
   });
-  const [daysArray, setDaysArray] = useState([...daysArrayInit]);
+  
   const [meal, setMeal] = useState([]);
   const [exercise, setExercise] = useState([]);
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
+  const [refresh, setRefresh] = useState(0);
 
   useEffect(() => {
-    console.log("Hello");
-
     axios.get("http://localhost:8000/home/").then((response) => {
-      const daysObject = {
-        Monday: {
-          id: 1,
-          name: "Monday",
-          meals: [],
-          exercises: [],
-        },
-        Tuesday: {
-          id: 2,
-          name: "Tuesday",
-          meals: [],
-          exercises: [],
-        },
-        Wednesday: {
-          id: 3,
-          name: "Wednesday",
-          meals: [],
-          exercises: [],
-        },
-        Thursday: {
-          id: 4,
-          name: "Thursday",
-          meals: [],
-          exercises: [],
-        },
-        Friday: {
-          id: 5,
-          name: "Friday",
-          meals: [],
-          exercises: [],
-        },
-        Saturday: {
-          id: 6,
-          name: "Saturday",
-          meals: [],
-          exercises: [],
-        },
-        Sunday: {
-          id: 7,
-          name: "Sunday",
-          meals: [],
-          exercises: [],
-        },
-      };
-
       setSchedule_obj(response.data);
-      for (const exercises of response.data.exerTrack) {
-        console.log(exercises.exercise_date.split(" ")[0]);
-        daysObject[exercises.exercise_date.split(" ")[0]]["exercises"].push(
-          exercises["tracking_id"]
-        );
-      }
-      for (const meals of response.data.mealTrack) {
-        daysObject[meals.meal_date.split(" ")[0]]["meals"].push(
-          meals["tracking_id"]
-        );
-      }
-      let daysArray1 = [];
-      for (const days in daysObject) {
-        daysArray1.push(daysObject[days]);
-      }
-
-      console.log(daysArray1);
-      setDaysArray(daysArray1);
+      
     });
-  }, []);
-
-  console.log("----------", schedule_obj, "----------");
-  console.log("++++++++", daysArray, "++++++");
+  }, [refresh]);
 
   // this section describes the creating of new exercis and new meals
   // new meal section
-  const handleCreateMeal = (mealName) => {
-    console.log(mealName);
-    const updateMeals = [...meal, { id: 123, meal_name: mealName }];
-    console.log("new Meal array", updateMeals);
-    setMeal(updateMeals);
+  const handleCreateMeal = () => {
+    setMeal([]);
   };
 
   // new exercise section
-  const handleCreateExercise = (formData) => {
-    console.log(formData);
-    const updateExercise = [
-      ...exercise,
-      {
-        id: 123,
-        exercise_name: formData.exerciseName,
-        exercise_detail: formData.exerciseDetail,
-      },
-    ];
-    console.log("new exericse array", updateExercise);
-    setExercise(updateExercise);
+  const handleCreateExercise = () => {
+    setExercise([]);
   };
-
+  
   // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day);
@@ -469,7 +390,7 @@ function App() {
       <TopNav></TopNav>
       <main className="layout">
         <DaysNavigationBar
-          daysArray={daysArray}
+          daysArray={daysArrayInit}
           schedule_obj={schedule_obj}
           onChange={setDay}
           day={day}
@@ -490,8 +411,15 @@ function App() {
             setModalExerciseIsOpen={setModalExerciseIsOpen}
             onCreateExercise={handleCreateExercise}
             schedule_obj={schedule_obj}
+            refresh={refresh}
+            setRefresh={setRefresh}
+            day={day}
           />
-          <OutlinedCardExcercise excercises={excercises} />
+          <OutlinedCardExcercise
+            excercises={excercises}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
         </section>
         <section className="meal">
           <div>
@@ -509,8 +437,15 @@ function App() {
             setModalMealIsOpen={setModalMealIsOpen}
             onCreateMeal={handleCreateMeal}
             schedule_obj={schedule_obj}
+            refresh={refresh}
+            setRefresh={setRefresh}
+            day={day}
           />
-          <OutlinedCardMeal meals={meals} />
+          <OutlinedCardMeal
+            meals={meals}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
         </section>
         <div class="smiley-face" data-score="50">
           <div class="smiley-face-inner">

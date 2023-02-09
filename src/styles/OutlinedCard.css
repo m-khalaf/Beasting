@@ -4,20 +4,22 @@
 }
 
 .card-container {
+  width: 600px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  margin: 50px auto;
 }
 
 .card {
-  width: 80%;
-  height: auto;
+  width: 300px;
+  height: 200px;
   margin: 20px;
   border: 1px solid grey;
   border-radius: 5px;
   box-shadow: 0px 2px 3px lightgrey;
+  float: left;
 }
 
 /* Card Content */
@@ -47,3 +49,8 @@
 .faPlus {
   cursor: pointer;
 }
+
+/* .bottom-div {
+  position: absolute;
+  bottom: 0;
+} */

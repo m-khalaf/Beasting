@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import axios from "axios";
 import { sortMeals } from "../../helpers/sort";
 
 export default function CreateMeal({
@@ -7,6 +8,9 @@ export default function CreateMeal({
   modalMealIsOpen,
   setModalMealIsOpen,
   schedule_obj,
+  refresh,
+  setRefresh,
+  day
 }) {
   const [mealName, setMealName] = useState("");
   const [sortedMeals, setSortedMeals] = useState(schedule_obj.meals);
@@ -15,11 +19,47 @@ export default function CreateMeal({
     setMealName(event.target.value);
   };
 
+  const getUnixTime  = (day) => {
+    const date = 1611626000;
+    if(day === 'Monday') {
+      return date;
+    } else if (day === 'Tuesday') {
+      return date + 1 * 24 * 60 * 60;
+    } else if (day === 'Wednesday') {
+      return date + 2 * 24 * 60 * 60;
+    } else if (day === 'Thursday') {
+      return date + 3 * 24 * 60 * 60;
+    } else if (day === 'Friday') {
+      return date + 4 * 24 * 60 * 60;
+    }  else if (day === 'Saturday') {
+      return date + 5 * 24 * 60 * 60;
+    } else if (day === 'Sunday') {
+      return date + 6 * 24 * 60 * 60;
+  }
+  }
+  const saveMeal = () => {
+    if(mealName.length !== 0) {
+      axios
+        .post(`http://localhost:8000/home/save-meal/`, {
+          name: mealName,
+          day: getUnixTime(day)
+        })
+        .then((res) => {
+          console.log("Completion status updated successfully", res.data);
+          setRefresh(refresh + 1)
+          onRequestClose()
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
   useEffect(() => {
     setSortedMeals(sortMeals(schedule_obj.meals, mealName));
-  }, [mealName, schedule_obj.meals]);
+  }, [mealName]);
 
-  console.log(sortMeals(schedule_obj.meals, mealName));
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     onCreateMeal(mealName);
@@ -38,7 +78,7 @@ export default function CreateMeal({
             onChange={handleChange}
           />
           <div class="p-2"></div>
-          <button class="btn btn-outline-primary mx-2">Save</button>
+          <button class="btn btn-outline-primary mx-2" onClick={saveMeal}>Save</button>
           <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>
             Close
           </button>
@@ -60,7 +100,7 @@ export default function CreateMeal({
               key={index}
               onClick={() => {
                 setMealName(
-                  meals.meal_name,
+                  meals.meal_name
                 );
               }}
             >
