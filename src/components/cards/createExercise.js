@@ -10,7 +10,8 @@ export default function CreateExercise({
   setModalExerciseIsOpen,
   schedule_obj,
   refresh,
-  setRefresh
+  setRefresh,
+  day
 }) {
   const [formData, setFormData] = useState({
     exerciseName: "",
@@ -19,6 +20,7 @@ export default function CreateExercise({
   const [sortedExercises, setSortedExercises] = useState(
     schedule_obj.exercises
   );
+
 
   useEffect(() => {
     console.log(schedule_obj)
@@ -42,12 +44,31 @@ export default function CreateExercise({
     setModalExerciseIsOpen(false);
   };
 
+  const getUnixTime  = (day) => {
+    const date = 1611626000;
+    if(day === 'Monday') {
+      return date;
+    } else if (day === 'Tuesday') {
+      return date + 1 * 24 * 60 * 60;
+    } else if (day === 'Wednesday') {
+      return date + 2 * 24 * 60 * 60;
+    } else if (day === 'Thursday') {
+      return date + 3 * 24 * 60 * 60;
+    } else if (day === 'Friday') {
+      return date + 4 * 24 * 60 * 60;
+    }  else if (day === 'Saturday') {
+      return date + 5 * 24 * 60 * 60;
+    } else if (day === 'Sunday') {
+      return date + 6 * 24 * 60 * 60;
+  }
+  }
   const saveExercise = () => {
     if(formData.exerciseDetail.length !== 0 && formData.exerciseName.length !== 0) {
       axios
         .post(`http://localhost:8000/home/save-exercise/`, {
           name: formData.exerciseName,
-          detail: formData.exerciseDetail
+          detail: formData.exerciseDetail,
+          day: getUnixTime(day)
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);

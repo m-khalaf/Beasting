@@ -150,7 +150,7 @@ router.post('/mcomplete/', (req, res) => {
 // route to use a preset
 
 router.post('/save-meal/', (req, res) => {
-  let date = 1674651600; // wednesday
+  let date = req.body.day; // wednesday
   const meal_name = req.body.name;
   const userId = 1;
   
@@ -178,7 +178,7 @@ router.post('/save-meal/', (req, res) => {
 });
 
 router.post('/save-exercise/', (req, res) => {
-  let date = 1674651600; // wednesday
+  let date = req.body.day; // wednesday
   const exercise_name = req.body.name;
   const exercise_detail = req.body.detail;
   const userId = 1;

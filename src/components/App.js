@@ -370,15 +370,12 @@ function App() {
 
   // this section describes the creating of new exercis and new meals
   // new meal section
-  const handleCreateMeal = (mealName) => {
-
-    
+  const handleCreateMeal = () => {
     setMeal([]);
   };
 
   // new exercise section
   const handleCreateExercise = () => {
-
     setExercise([]);
   };
   
@@ -416,6 +413,7 @@ function App() {
             schedule_obj={schedule_obj}
             refresh={refresh}
             setRefresh={setRefresh}
+            day={day}
           />
           <OutlinedCardExcercise
             excercises={excercises}
@@ -441,6 +439,7 @@ function App() {
             schedule_obj={schedule_obj}
             refresh={refresh}
             setRefresh={setRefresh}
+            day={day}
           />
           <OutlinedCardMeal
             meals={meals}
