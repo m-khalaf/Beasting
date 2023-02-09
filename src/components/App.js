@@ -373,13 +373,13 @@ function App() {
   // new meal section
   const handleCreateMeal = (mealName) => {
     const updateMeals = [...meal, { id: 123, meal_name: mealName }];
-    console.log("new Meal array", updateMeals);
+    
     setMeal(updateMeals);
   };
 
   // new exercise section
   const handleCreateExercise = (formData) => {
-    console.log(formData);
+    
     const updateExercise = [
       ...exercise,
       {
