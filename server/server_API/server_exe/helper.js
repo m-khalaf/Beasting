@@ -39,4 +39,4 @@ module.exports = {
 let unix = 1647481862
 
 
-unixToDate(unix);
+console.log(unixToDate(1611798800- 2*24*60*60));
