@@ -354,7 +354,7 @@ function App() {
       },
     ],
   });
-  const [daysArray, setDaysArray] = useState([...daysArrayInit]);
+  
   const [meal, setMeal] = useState([]);
   const [exercise, setExercise] = useState([]);
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
@@ -363,69 +363,9 @@ function App() {
 
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
-      const daysObject = {
-        Monday: {
-          id: 1,
-          name: "Monday",
-          meals: [],
-          exercises: [],
-        },
-        Tuesday: {
-          id: 2,
-          name: "Tuesday",
-          meals: [],
-          exercises: [],
-        },
-        Wednesday: {
-          id: 3,
-          name: "Wednesday",
-          meals: [],
-          exercises: [],
-        },
-        Thursday: {
-          id: 4,
-          name: "Thursday",
-          meals: [],
-          exercises: [],
-        },
-        Friday: {
-          id: 5,
-          name: "Friday",
-          meals: [],
-          exercises: [],
-        },
-        Saturday: {
-          id: 6,
-          name: "Saturday",
-          meals: [],
-          exercises: [],
-        },
-        Sunday: {
-          id: 7,
-          name: "Sunday",
-          meals: [],
-          exercises: [],
-        },
-      };
-
+      console.log(response.data)
       setSchedule_obj(response.data);
-      for (const exercises of response.data.exerTrack) {
-        console.log(exercises.exercise_date.split(" ")[0]);
-        daysObject[exercises.exercise_date.split(" ")[0]]["exercises"].push(
-          exercises["tracking_id"]
-        );
-      }
-      for (const meals of response.data.mealTrack) {
-        daysObject[meals.meal_date.split(" ")[0]]["meals"].push(
-          meals["tracking_id"]
-        );
-      }
-      let daysArray1 = [];
-      for (const days in daysObject) {
-        daysArray1.push(daysObject[days]);
-      }
-
-      setDaysArray(daysArray1);
+      
     });
   }, [refresh]);
 
@@ -451,7 +391,7 @@ function App() {
     console.log("new exericse array", updateExercise);
     setExercise(updateExercise);
   };
-
+  
   // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day);
@@ -463,7 +403,7 @@ function App() {
       <TopNav></TopNav>
       <main className="layout">
         <DaysNavigationBar
-          daysArray={daysArray}
+          daysArray={daysArrayInit}
           schedule_obj={schedule_obj}
           onChange={setDay}
           day={day}

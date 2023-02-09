@@ -149,4 +149,61 @@ router.post('/mcomplete/', (req, res) => {
 
 // route to use a preset
 
+router.post('/save-meal/', (req, res) => {
+  let date = 1674651600; // wednesday
+  const meal_name = req.body.name;
+  const userId = 1;
+  
+  db.saveMeal(date, meal_name, 'false', userId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
+
+router.post('/save-exercise/', (req, res) => {
+  let date = 1674651600; // wednesday
+  const exercise_name = req.body.name;
+  const exercise_detail = req.body.detail;
+  const userId = 1;
+  
+  db.saveExercise( exercise_name, exercise_detail, 'false', date, userId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
+
 module.exports = router;

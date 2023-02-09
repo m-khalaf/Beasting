@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import axios from "axios";
 import { sortMeals } from "../../helpers/sort";
 
 export default function CreateMeal({
@@ -14,6 +15,21 @@ export default function CreateMeal({
   const handleChange = (event) => {
     setMealName(event.target.value);
   };
+
+  const saveMeal = () => {
+    if(mealName.length !== 0) {
+      axios
+        .post(`http://localhost:8000/home/save-meal/`, {
+          name: mealName
+        })
+        .then((res) => {
+          console.log("Completion status updated successfully", res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
 
   useEffect(() => {
     setSortedMeals(sortMeals(schedule_obj.meals, mealName));
@@ -38,7 +54,7 @@ export default function CreateMeal({
             onChange={handleChange}
           />
           <div class="p-2"></div>
-          <button class="btn btn-outline-primary mx-2">Save</button>
+          <button class="btn btn-outline-primary mx-2" onClick={saveMeal}>Save</button>
           <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>
             Close
           </button>

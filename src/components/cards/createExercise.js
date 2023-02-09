@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { sortExercises, filterExercises } from "../../helpers/sort";
 
 export default function CreateExercise({
@@ -37,6 +38,22 @@ export default function CreateExercise({
     setModalExerciseIsOpen(false);
   };
 
+  const saveExercise = () => {
+    if(formData.exerciseDetail.length !== 0 && formData.exerciseName.length !== 0) {
+      axios
+        .post(`http://localhost:8000/home/save-exercise/`, {
+          name: formData.exerciseName,
+          detail: formData.exerciseDetail
+        })
+        .then((res) => {
+          console.log("Completion status updated successfully", res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
+
   const onRequestClose = () => setModalExerciseIsOpen(false);
   return (
     <div>
@@ -66,7 +83,7 @@ export default function CreateExercise({
               <div class="p-2"></div>
             </div>
           </div>
-          <button class="btn btn-outline-primary mx-2" type="submit">
+          <button class="btn btn-outline-primary mx-2" type="submit" onClick={saveExercise}>
             Save
           </button>
           <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>
