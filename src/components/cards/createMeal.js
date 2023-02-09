@@ -56,7 +56,8 @@ export default function CreateMeal({
   }
 
   useEffect(() => {
-    setSortedMeals(sortMeals(schedule_obj.meals, mealName));
+    setRefresh(refresh + 1)
+    return setSortedMeals(sortMeals(schedule_obj.meals, mealName));
   }, [mealName]);
 
   
@@ -104,7 +105,7 @@ export default function CreateMeal({
                 );
               }}
             >
-              {meals.meal_name}:{meals.meal_name}
+              {meals.meal_name}
             </button>
           ))}
         </div>

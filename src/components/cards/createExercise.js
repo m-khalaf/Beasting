@@ -23,11 +23,16 @@ export default function CreateExercise({
 
 
   useEffect(() => {
-    console.log(schedule_obj)
+    setRefresh(refresh + 1)
     return setSortedExercises(
       sortExercises(schedule_obj.exercises, formData.exerciseName)
     );
   }, [formData]);
+
+  // useEffect(() => {
+
+  // }, [sortedExercises])
+  console.log(sortedExercises, formData);
 
   const onHandleChange = (event) => {
     // event.preventDefault();
