@@ -369,7 +369,7 @@ function App() {
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
-      
+      console.log(response.data)
     });
   }, [refresh]);
 
