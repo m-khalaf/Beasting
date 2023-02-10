@@ -18,9 +18,8 @@ export default function CreateExercise({
     exerciseDetail: "",
   });
   const [sortedExercises, setSortedExercises] = useState(
-    schedule_obj.exercises
+    [...schedule_obj.exercises]
   );
-
 
   useEffect(() => {
     setRefresh(refresh + 1)
@@ -28,11 +27,6 @@ export default function CreateExercise({
       sortExercises(schedule_obj.exercises, formData.exerciseName)
     );
   }, [formData]);
-
-  // useEffect(() => {
-
-  // }, [sortedExercises])
-  console.log(sortedExercises, formData);
 
   const onHandleChange = (event) => {
     // event.preventDefault();
@@ -50,7 +44,7 @@ export default function CreateExercise({
   };
 
   const getUnixTime  = (day) => {
-    const date = 1611626000;
+    const date = 1675062129;
     if(day === 'Monday') {
       return date;
     } else if (day === 'Tuesday') {
@@ -143,6 +137,7 @@ export default function CreateExercise({
                   exerciseDetail: exercise.exercise_detail,
                 });
               }}
+              style={{ border: "1px solid black" }}
             >
               {exercise.exercise_name}: {exercise.exercise_detail}
             </button>
