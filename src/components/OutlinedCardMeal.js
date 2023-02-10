@@ -5,7 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Switch, Grid } from "@nextui-org/react";
+import { Switch, Grid, Checkbox } from "@nextui-org/react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -71,13 +71,19 @@ export default function OutlinedCardMeal(props) {
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Switch
+                  <Checkbox isSelected={meal.completion} checked={meal.completion} color="success" onChange={() => {
+                        handleCompletion(meal.tracking_id, meal.completion);
+                        props.setRefresh(props.refresh + 1);
+                      }}>
+                  </Checkbox>
+                  {/* <Switch
                     color="success"
                     checked={meal.completion}
                     onClick={() => {
                       handleCompletion(meal.tracking_id, meal.completion);
                     }}
-                  />
+                    
+                  /> */}
                 </Grid>
               </Grid.Container>
               <EditIcon />

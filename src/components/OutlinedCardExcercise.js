@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Switch, Grid } from "@nextui-org/react";
+import { Switch, Grid, Checkbox, Spacer  } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
@@ -25,15 +25,8 @@ const EditIcon = () => {
   );
 };
 
-const handleCompletion = (trackingId, completion, props) => {
-  let completed = '';
-  if (completion === false) {
-    console.log('++++++++++')
-  } else if (completion === true) {
-    console.log('------------')
-  }else {
-    console.log('0000000000')
-  }
+const handleCompletion = (trackingId, completion) => {
+
   axios
     .post(`http://localhost:8000/home/excomplete/`, {
       completion: !completion,
@@ -72,7 +65,7 @@ const DeleteIcon = (props) => (
   </div>
 );
 export default function OutlinedCard(props) {
-  
+
   const card = props.excercises.map((excercise) => {
     return (
       <React.Fragment className="card-container">
@@ -86,17 +79,25 @@ export default function OutlinedCard(props) {
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Switch
+                  <Checkbox isSelected={excercise.completion} checked={excercise.completion} color="success" onChange={() => {
+                      handleCompletion(
+                        excercise.tracking_id,
+                        excercise.completion,
+                      );
+                      props.setRefresh(props.refresh + 1);
+                    }}>
+                  </Checkbox>
+                  {/* <Switch
                     color="success"
                     checked={excercise.completion}
                     onClick={() => {
                       handleCompletion(
                         excercise.tracking_id,
                         excercise.completion,
-                        props
                       );
+                        
                     }}
-                  />
+                  /> */}
                 </Grid>
               </Grid.Container>
               <EditIcon />
