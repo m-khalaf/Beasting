@@ -366,6 +366,13 @@ function App() {
       setSchedule_obj(response.data);
       
     });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/home/").then((response) => {
+      setSchedule_obj(response.data);
+      
+    });
   }, [refresh]);
 
   // this section describes the creating of new exercis and new meals

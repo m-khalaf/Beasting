@@ -50,7 +50,7 @@ export default function CreateExercise({
   };
 
   const getUnixTime  = (day) => {
-    const date = 1611626000;
+    const date = 1675062129;
     if(day === 'Monday') {
       return date;
     } else if (day === 'Tuesday') {
@@ -143,6 +143,7 @@ export default function CreateExercise({
                   exerciseDetail: exercise.exercise_detail,
                 });
               }}
+              style={{ border: "1px solid black" }}
             >
               {exercise.exercise_name}: {exercise.exercise_detail}
             </button>
