@@ -353,9 +353,28 @@ function calculateCompletionPercentage(mealTrack) {
   return completionPercentage;
 }
 
+const getUnixTime = (day) => {
+  const date = 1675062129;
+  if (day === "Monday") {
+    return date;
+  } else if (day === "Tuesday") {
+    return date + 1 * 24 * 60 * 60;
+  } else if (day === "Wednesday") {
+    return date + 2 * 24 * 60 * 60;
+  } else if (day === "Thursday") {
+    return date + 3 * 24 * 60 * 60;
+  } else if (day === "Friday") {
+    return date + 4 * 24 * 60 * 60;
+  } else if (day === "Saturday") {
+    return date + 5 * 24 * 60 * 60;
+  } else if (day === "Sunday") {
+    return date + 6 * 24 * 60 * 60;
+  }
+};
 export {
   getexcerciseForDay,
   getMealForDay,
   dayFromValue,
   calculateCompletionPercentage,
+  getUnixTime,
 };

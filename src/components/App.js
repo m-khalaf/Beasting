@@ -16,9 +16,6 @@ import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-// let schedule_obj = {
-// };
-
 let daysArrayInit = [
   {
     id: 1,
@@ -61,12 +58,15 @@ let daysArrayInit = [
     exercises: [],
   },
 ];
+let unixDayArry = [
+  1675062129, 1675148529, 1675234929, 1675321329, 1675407729, 1675494129,
+  1675580529,
+];
 
 function App() {
-  // console.log(schedule_obj);
-
   const [day, setDay] = useState("Monday");
   // What we added
+
   const [schedule_obj, setSchedule_obj] = useState({
     meals: [
       {
@@ -398,6 +398,7 @@ function App() {
           day={day}
           excercises={excercises}
           meals={meals}
+          unixDayArry={unixDayArry}
         />
         <section className="excercise">
           <div>
@@ -405,7 +406,9 @@ function App() {
             <FontAwesomeIcon
               icon={faPlus}
               className="faPlus"
-              onClick={() => setModalExerciseIsOpen(true)}
+              onClick={() => {
+                setModalExerciseIsOpen(true);
+              }}
             />
           </div>
           <CreateExercise
