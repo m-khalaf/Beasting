@@ -13,8 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 
-// let schedule_obj = {
-// };
+
 
 let daysArrayInit = [
   {
@@ -60,10 +59,10 @@ let daysArrayInit = [
 ];
 
 function App() {
-  // console.log(schedule_obj);
 
   const [day, setDay] = useState("Monday");
   // What we added
+  
   const [schedule_obj, setSchedule_obj] = useState({
     meals: [
       {
@@ -392,6 +391,7 @@ function App() {
 
   const meals = getMealForDay(schedule_obj, day);
 
+
   return (
     <div>
       <TopNav></TopNav>
@@ -410,7 +410,9 @@ function App() {
             <FontAwesomeIcon
               icon={faPlus}
               className="faPlus"
-              onClick={() => setModalExerciseIsOpen(true)}
+              onClick={() => {
+                setModalExerciseIsOpen(true);
+              }}
             />
           </div>
           <CreateExercise

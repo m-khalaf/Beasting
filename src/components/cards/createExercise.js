@@ -18,9 +18,8 @@ export default function CreateExercise({
     exerciseDetail: "",
   });
   const [sortedExercises, setSortedExercises] = useState(
-    schedule_obj.exercises
+    [...schedule_obj.exercises]
   );
-
 
   useEffect(() => {
     setRefresh(refresh + 1)
@@ -28,11 +27,6 @@ export default function CreateExercise({
       sortExercises(schedule_obj.exercises, formData.exerciseName)
     );
   }, [formData]);
-
-  // useEffect(() => {
-
-  // }, [sortedExercises])
-  console.log(sortedExercises, formData);
 
   const onHandleChange = (event) => {
     // event.preventDefault();
