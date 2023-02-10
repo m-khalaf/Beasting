@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { sortExercises } from "../../helpers/sort";
+import { getUnixTime } from "../../helpers/selectors";
 
 export default function CreateExercise({
   onCreateExercise,
@@ -11,18 +12,18 @@ export default function CreateExercise({
   schedule_obj,
   refresh,
   setRefresh,
-  day
+  day,
 }) {
   const [formData, setFormData] = useState({
     exerciseName: "",
     exerciseDetail: "",
   });
-  const [sortedExercises, setSortedExercises] = useState(
-    [...schedule_obj.exercises]
-  );
+  const [sortedExercises, setSortedExercises] = useState([
+    ...schedule_obj.exercises,
+  ]);
 
   useEffect(() => {
-    setRefresh(refresh + 1)
+    setRefresh(refresh + 1);
     return setSortedExercises(
       sortExercises(schedule_obj.exercises, formData.exerciseName)
     );
@@ -43,42 +44,27 @@ export default function CreateExercise({
     setModalExerciseIsOpen(false);
   };
 
-  const getUnixTime  = (day) => {
-    const date = 1675062129;
-    if(day === 'Monday') {
-      return date;
-    } else if (day === 'Tuesday') {
-      return date + 1 * 24 * 60 * 60;
-    } else if (day === 'Wednesday') {
-      return date + 2 * 24 * 60 * 60;
-    } else if (day === 'Thursday') {
-      return date + 3 * 24 * 60 * 60;
-    } else if (day === 'Friday') {
-      return date + 4 * 24 * 60 * 60;
-    }  else if (day === 'Saturday') {
-      return date + 5 * 24 * 60 * 60;
-    } else if (day === 'Sunday') {
-      return date + 6 * 24 * 60 * 60;
-  }
-  }
   const saveExercise = () => {
-    if(formData.exerciseDetail.length !== 0 && formData.exerciseName.length !== 0) {
+    if (
+      formData.exerciseDetail.length !== 0 &&
+      formData.exerciseName.length !== 0
+    ) {
       axios
         .post(`http://localhost:8000/home/save-exercise/`, {
           name: formData.exerciseName,
           detail: formData.exerciseDetail,
-          day: getUnixTime(day)
+          day: getUnixTime(day),
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);
-          setRefresh(refresh + 1)
-          onRequestClose()
+          setRefresh(refresh + 1);
+          onRequestClose();
         })
         .catch((err) => {
           console.error(err);
         });
     }
-  }
+  };
 
   const onRequestClose = () => setModalExerciseIsOpen(false);
   return (
@@ -109,7 +95,11 @@ export default function CreateExercise({
               <div class="p-2"></div>
             </div>
           </div>
-          <button class="btn btn-outline-primary mx-2" type="submit" onClick={saveExercise}>
+          <button
+            class="btn btn-outline-primary mx-2"
+            type="submit"
+            onClick={saveExercise}
+          >
             Save
           </button>
           <button class="btn btn-outline-primary mx-2" onClick={onRequestClose}>

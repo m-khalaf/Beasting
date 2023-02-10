@@ -3,7 +3,11 @@ import DaysNavigationBar from "./DaysNavigationBar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
-import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
+import {
+  getexcerciseForDay,
+  getMealForDay,
+  calculateCompletionPercentage,
+} from "../helpers/selectors";
 import TopNav from "./TopNav";
 import CreateMeal from "./cards/createMeal";
 import CreateExercise from "./cards/createExercise";
@@ -11,9 +15,6 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-
-
-
 
 let daysArrayInit = [
   {
@@ -57,12 +58,15 @@ let daysArrayInit = [
     exercises: [],
   },
 ];
+let unixDayArry = [
+  1675062129, 1675148529, 1675234929, 1675321329, 1675407729, 1675494129,
+  1675580529,
+];
 
 function App() {
-
   const [day, setDay] = useState("Monday");
   // What we added
-  
+
   const [schedule_obj, setSchedule_obj] = useState({
     meals: [
       {
@@ -353,19 +357,25 @@ function App() {
       },
     ],
   });
-  
+
   const [meal, setMeal] = useState([]);
   const [exercise, setExercise] = useState([]);
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(0);
 
+<<<<<<< HEAD
   
 
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
       
+=======
+  useEffect(() => {
+    axios.get("http://localhost:8000/home/").then((response) => {
+      setSchedule_obj(response.data);
+>>>>>>> 9c380e70db83a0b55fbcf8dc3dfdca5122b7b5ac
     });
   }, [refresh]);
 
@@ -379,14 +389,13 @@ function App() {
   const handleCreateExercise = () => {
     setExercise([]);
   };
-  
+
   // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day);
-
+  const completion = calculateCompletionPercentage(schedule_obj.mealTrack);
   const meals = getMealForDay(schedule_obj, day);
-
-
+  console.log("completed bay", schedule_obj.mealTrack, completion);
   return (
     <div>
       <TopNav></TopNav>
@@ -398,6 +407,7 @@ function App() {
           day={day}
           excercises={excercises}
           meals={meals}
+          unixDayArry={unixDayArry}
         />
         <section className="excercise">
           <div>
@@ -427,7 +437,8 @@ function App() {
         </section>
         <section className="meal">
           <div>
-            <span>Meals</span>
+            <span>Meals{completion.Monday}</span>
+            <span></span>
             <FontAwesomeIcon
               icon={faPlus}
               onClick={() => {
