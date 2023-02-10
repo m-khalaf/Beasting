@@ -364,18 +364,12 @@ function App() {
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(0);
 
-<<<<<<< HEAD
   
 
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
       
-=======
-  useEffect(() => {
-    axios.get("http://localhost:8000/home/").then((response) => {
-      setSchedule_obj(response.data);
->>>>>>> 9c380e70db83a0b55fbcf8dc3dfdca5122b7b5ac
     });
   }, [refresh]);
 
