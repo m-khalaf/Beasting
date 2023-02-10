@@ -16,16 +16,6 @@ import {
 import "../styles/OutlinedCard.css";
 import axios from "axios";
 
-// const handleDelete = (id) => {
-//   axios
-//   .delete(`http://localhost:8000/home/edelete/${id}`)
-//   .then((res) => {
-//   console.log("Completion status updated successfully", id);
-//   })
-//   .catch((err) => {
-//   console.error(err);
-//   });
-// };
 
 const EditIcon = () => {
   return (
@@ -35,7 +25,15 @@ const EditIcon = () => {
   );
 };
 
-const handleCompletion = (trackingId, completion) => {
+const handleCompletion = (trackingId, completion, props) => {
+  let completed = '';
+  if (completion === false) {
+    console.log('++++++++++')
+  } else if (completion === true) {
+    console.log('------------')
+  }else {
+    console.log('0000000000')
+  }
   axios
     .post(`http://localhost:8000/home/excomplete/`, {
       completion: !completion,
@@ -49,21 +47,12 @@ const handleCompletion = (trackingId, completion) => {
     });
 };
 
-// const DeleteIcon = (props) => (
-//   <div>
-//     <FontAwesomeIcon
-//       icon={faTrashAlt}
-//       className="fa-trash-alt"
-//       onClick={props.onClick}
-//     />
-//   </div>
-// );
 
 const deleteExc = (id) => {
   axios
     .delete(`http://localhost:8000/home/edelete/${id}`)
     .then((res) => {
-      console.log("Completion status updated successfully", id);
+      console.log("Deleted successfully", id);
     })
     .catch((err) => {
       console.error(err);
@@ -83,18 +72,7 @@ const DeleteIcon = (props) => (
   </div>
 );
 export default function OutlinedCard(props) {
-  // const [exercises, setExercises] = React.useState(props.excercises);
-
-  // const handleDelete = (id) => {
-  //   axios
-  //     .delete(`http://localhost:8000/home/edelete/${id}`)
-  //     .then(() => {
-  //       console.log("Deleted successfully", id);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
+  
   const card = props.excercises.map((excercise) => {
     return (
       <React.Fragment className="card-container">
@@ -105,7 +83,7 @@ export default function OutlinedCard(props) {
 
           <Typography variant="body2">
             {excercise.exercise_detail}
-            <CardActions className="card-actions bottom-div">
+            <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
                   <Switch
@@ -114,7 +92,8 @@ export default function OutlinedCard(props) {
                     onClick={() => {
                       handleCompletion(
                         excercise.tracking_id,
-                        excercise.completion
+                        excercise.completion,
+                        props
                       );
                     }}
                   />

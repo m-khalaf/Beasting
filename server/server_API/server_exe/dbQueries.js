@@ -140,11 +140,11 @@ module.exports = {
  
   
   // Complete meal tracking
-  completeMealTracking: (tracking_id) => {
+  completeMealTracking: (tracking_id, completion) => {
     return pool.query(
       `UPDATE meals_tracker
-      SET completion = true
-      WHERE id = $1`, [tracking_id]
+      SET completion = $2
+      WHERE id = $1`, [tracking_id, completion]
     )
       .then((result) => {
         return result;
@@ -153,13 +153,15 @@ module.exports = {
         console.log(err.message);
       });
   },
+
   
   // Complete exercise tracking
-  completeExerciseTracking: (tracking_id) => {
+  completeExerciseTracking: (tracking_id, completion) => {
     return pool.query(
       `UPDATE exercise_tracking
-      SET completion = true
-      WHERE id = $1`, [tracking_id]
+      SET completion = $2
+      WHERE id = $1;
+  `, [tracking_id, completion]
     )
       .then((result) => {
         return result;

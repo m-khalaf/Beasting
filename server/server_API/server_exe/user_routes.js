@@ -92,11 +92,12 @@ router.delete('/mdelete/:trackingId', (req, res) => {
 router.post('/excomplete/', (req, res) => {
   
   const trackingId = req.body.trackingId;
+  const completion = req.body.completion? 'true':'false';
   const userId = 1;
 
   console.log(req.body)
 
-  db.completeExerciseTracking(trackingId)
+  db.completeExerciseTracking(trackingId, completion)
     .then(() => {
       db.getMeals().then((meals) => {
         if (meals.length !== 0) {
@@ -122,9 +123,10 @@ router.post('/excomplete/', (req, res) => {
 
 router.post('/mcomplete/', (req, res) => {
   const trackingId = req.body.trackingId;
+  const completion = req.body.completion? 'true':'false';
   const userId = 1;
   
-  db.completeMealTracking(trackingId)
+  db.completeMealTracking(trackingId, completion)
     .then(() => {
       db.getMeals().then((meals) => {
         if (meals.length !== 0) {

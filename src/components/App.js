@@ -360,12 +360,7 @@ function App() {
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(0);
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/home/").then((response) => {
-      setSchedule_obj(response.data);
-      
-    });
-  }, []);
+  
 
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
