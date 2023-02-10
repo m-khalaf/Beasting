@@ -290,14 +290,18 @@ let schedule_obj = {
 };
 
 const getexcerciseForDay = function (state, day) {
-  const exercises = state.exerTrack.filter((exc) => exc.exercise_date.split(' ')[0] === day);
+  const exercises = state.exerTrack.filter(
+    (exc) => exc.exercise_date.split(" ")[0] === day
+  );
   console.log(exercises);
   return exercises;
 };
 
 const getMealForDay = function (state, day) {
-  const meals = state.mealTrack.filter((meal) => meal.meal_date.split(' ')[0] === day);
-  console.log(meals)
+  const meals = state.mealTrack.filter(
+    (meal) => meal.meal_date.split(" ")[0] === day
+  );
+  console.log(meals);
   return meals;
 };
 
@@ -310,4 +314,48 @@ const dayFromValue = function (value) {
   if (value === 5) return "Saturday";
   if (value === 6) return "Sunday";
 };
-export { getexcerciseForDay, getMealForDay, dayFromValue };
+
+function calculateCompletionPercentage(mealTrack) {
+  let days = new Set();
+  let mealCount = {};
+
+  // Get unique days and count of meals for each day
+  mealTrack.forEach((meal) => {
+    let date = new Date(meal.meal_date);
+    let day = date.toLocaleDateString();
+    days.add(day);
+    if (!mealCount[day]) {
+      mealCount[day] = 1;
+    } else {
+      mealCount[day]++;
+    }
+  });
+
+  // Calculate the completion percentage for each day
+  let completionPercentage = {};
+  mealTrack.forEach((meal) => {
+    let date = new Date(meal.meal_date);
+    let day = date.toLocaleDateString();
+    if (meal.completion) {
+      if (!completionPercentage[day]) {
+        completionPercentage[day] = 1;
+      } else {
+        completionPercentage[day]++;
+      }
+    }
+  });
+
+  Object.keys(completionPercentage).forEach((day) => {
+    completionPercentage[day] =
+      (completionPercentage[day] / mealCount[day]) * 100;
+  });
+
+  return completionPercentage;
+}
+
+export {
+  getexcerciseForDay,
+  getMealForDay,
+  dayFromValue,
+  calculateCompletionPercentage,
+};

@@ -3,7 +3,11 @@ import DaysNavigationBar from "./DaysNavigationBar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 // import { schedule_obj } from "../mocks/mockData";
-import { getexcerciseForDay, getMealForDay } from "../helpers/selectors";
+import {
+  getexcerciseForDay,
+  getMealForDay,
+  calculateCompletionPercentage,
+} from "../helpers/selectors";
 import TopNav from "./TopNav";
 import CreateMeal from "./cards/createMeal";
 import CreateExercise from "./cards/createExercise";
@@ -11,7 +15,6 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-
 
 // let schedule_obj = {
 // };
@@ -354,7 +357,7 @@ function App() {
       },
     ],
   });
-  
+
   const [meal, setMeal] = useState([]);
   const [exercise, setExercise] = useState([]);
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
@@ -364,7 +367,6 @@ function App() {
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
-      
     });
   }, [refresh]);
 
@@ -378,13 +380,13 @@ function App() {
   const handleCreateExercise = () => {
     setExercise([]);
   };
-  
+
   // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day);
-
+  const completion = calculateCompletionPercentage(schedule_obj.mealTrack);
   const meals = getMealForDay(schedule_obj, day);
-
+  console.log("completed bay", schedule_obj.mealTrack, completion);
   return (
     <div>
       <TopNav></TopNav>
@@ -423,7 +425,8 @@ function App() {
         </section>
         <section className="meal">
           <div>
-            <span>Meals</span>
+            <span>Meals{completion.Monday}</span>
+            <span></span>
             <FontAwesomeIcon
               icon={faPlus}
               onClick={() => {
