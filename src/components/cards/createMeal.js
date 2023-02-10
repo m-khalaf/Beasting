@@ -20,7 +20,7 @@ export default function CreateMeal({
   };
 
   const getUnixTime  = (day) => {
-    const date = 1611626000;
+    const date = 1675062129;
     if(day === 'Monday') {
       return date;
     } else if (day === 'Tuesday') {
@@ -104,6 +104,7 @@ export default function CreateMeal({
                   meals.meal_name
                 );
               }}
+              style={{ border: "1px solid black" }}
             >
               {meals.meal_name}
             </button>
