@@ -2,7 +2,7 @@ import "./Schedule.css";
 import DaysNavigationBar from "./DaysNavigationBar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import Gifbar from "./Gifbar";
 // import { schedule_obj } from "../mocks/mockData";
 import {
   getexcerciseForDay,
@@ -392,7 +392,7 @@ function App() {
   console.log("completed bay", schedule_obj.mealTrack, completion);
   return (
     <div>
-      <TopNav></TopNav>
+      
       <main className="layout">
         <DaysNavigationBar
           daysArray={daysArrayInit}
@@ -403,19 +403,10 @@ function App() {
           meals={meals}
           unixDayArry={unixDayArry}
         />
+        <Gifbar gif={'exer'}></Gifbar>
         <section className="excercise">
-          <div style={{ width: "200px", height: "100px", overflow: "hidden" }}>
-            <img
-              src={bench}
-              alt="My GIF"
-              style={{
-                width: "240%",
-                height: "100%",
-                transform: "translateX(-20%)",
-              }}
-            />
-          </div>
-
+          
+          
           <div>
             <span>Exercises</span>
             <FontAwesomeIcon
@@ -441,7 +432,7 @@ function App() {
             setRefresh={setRefresh}
           />
         </section>
-
+        <Gifbar gif={'meal'}></Gifbar>        
         <section className="meal">
           <div>
             <span>Meals{completion.Monday}</span>
