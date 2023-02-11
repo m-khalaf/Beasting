@@ -406,7 +406,7 @@ function App() {
         />
         <section className="excercise">
         <div style={{ width: '200px', height: '100px', overflow: 'hidden' }}>
-          <img src={bench} alt="My GIF" style={{ width: '240%', height: '100%', transform: 'translateX(-20%)' }} />
+          <img src={bench} alt="My GIF" style={{ width: '100%', height: '100%', transform: 'translateX(10%)' }} />
         </div>
 
           <div>

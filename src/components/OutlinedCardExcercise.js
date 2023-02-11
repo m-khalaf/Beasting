@@ -70,11 +70,11 @@ export default function OutlinedCard(props) {
     return (
       <React.Fragment className="card-container">
         <CardContent className="card card-content">
-          <Typography variant="h5" component="div" className="exercise-name">
+          <Typography variant="h5" component="div" className="exercise-name" style={{ fontSize: '20px' }}>
             {excercise.exercise_name}
           </Typography>
 
-          <Typography variant="body2">
+          <Typography variant="body2" style={{ fontSize: '12px' }}>
             {excercise.exercise_detail}
             <CardActions className="card-actions">
               <Grid.Container>

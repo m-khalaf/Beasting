@@ -62,11 +62,11 @@ export default function OutlinedCardMeal(props) {
     return (
       <React.Fragment className="card-container">
         <CardContent className="card card-content">
-          <Typography variant="h5" component="div" className="exercise-name">
+          <Typography variant="h5" component="div" className="exercise-name" style={{ fontSize: '17px' }}>
             {meal.meal_name}
           </Typography>
 
-          <Typography variant="body2">
+          <Typography variant="body2" style={{ fontSize: '12px' }}>
             {/* {meal.meal_detail} */}
             <CardActions className="card-actions">
               <Grid.Container>
