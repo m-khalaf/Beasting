@@ -406,8 +406,8 @@ function App() {
         />
         <section className="excercise">
         
-          <Gifbar></Gifbar>
-
+          <Gifbar gif={'exer'}></Gifbar>
+          <Gifbar gif={'meal'}></Gifbar>
           <div>
             <span>Exercises</span>
             <FontAwesomeIcon
