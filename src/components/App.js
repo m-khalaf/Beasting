@@ -2,6 +2,7 @@ import "./App.css";
 import DaysNavigationBar from "./DaysNavigationBar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+
 // import { schedule_obj } from "../mocks/mockData";
 import {
   getexcerciseForDay,
@@ -365,12 +366,10 @@ function App() {
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(0);
 
-  
-
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
-      console.log(response.data)
+      console.log(response.data);
     });
   }, [refresh]);
 
@@ -405,9 +404,17 @@ function App() {
           unixDayArry={unixDayArry}
         />
         <section className="excercise">
-        <div style={{ width: '200px', height: '100px', overflow: 'hidden' }}>
-          <img src={bench} alt="My GIF" style={{ width: '240%', height: '100%', transform: 'translateX(-20%)' }} />
-        </div>
+          <div style={{ width: "200px", height: "100px", overflow: "hidden" }}>
+            <img
+              src={bench}
+              alt="My GIF"
+              style={{
+                width: "240%",
+                height: "100%",
+                transform: "translateX(-20%)",
+              }}
+            />
+          </div>
 
           <div>
             <span>Exercises</span>
@@ -434,7 +441,7 @@ function App() {
             setRefresh={setRefresh}
           />
         </section>
-        
+
         <section className="meal">
           <div>
             <span>Meals{completion.Monday}</span>
