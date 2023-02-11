@@ -4,7 +4,7 @@ export default function Analytics() {
   return <div>
     Analytics
     
-    <canvas id="weightChart" style="width: 80%; height: 50%;"></canvas>
+    <WeightChart></WeightChart>
 
     </div>;
 }
