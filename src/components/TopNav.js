@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import logo from "../resources/logo.png";
 
 export default function Navigation() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          BEAST
-        </a>
+        <div style={{ width: '106px', height: '60px', overflow: 'hidden' }}>
+            <img src={logo} alt="My GIF" style={{ width: '100%', height: '100%', transform: 'translateX(10%)' }} />
+        </div>
         <button
           class="navbar-toggler"
           type="button"

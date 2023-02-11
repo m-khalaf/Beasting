@@ -6,10 +6,13 @@ import Home from "./Home";
 import Progress from "./Progress";
 import Analytics from "./Analytics";
 import Schedule from "./Schedule";
+
 export default function App() {
   return (
     <div>
-      <TopNav></TopNav>
+      <TopNav>
+        
+      </TopNav>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/progress" element={<Progress />} />
