@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import WeightChart from "./WeightChart"
+import MaintenanceCalculator from "./MaintenanceCalculator";
+// import WeightChart from "./WeightChart"
 export default function Analytics() {
   return <div>
     Analytics
     
-    <canvas id="weightChart" style="width: 80%; height: 50%;"></canvas>
-
+    {/* <canvas id="weightChart" style="width: 80%; height: 50%;"></canvas> */}
+    <MaintenanceCalculator></MaintenanceCalculator>
     </div>;
 }
