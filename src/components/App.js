@@ -15,8 +15,8 @@ import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import bench from "../resources/bench.gif";
-
+import Gifbar from "./Gifbar";
+import { Gif } from "@mui/icons-material";
 let daysArrayInit = [
   {
     id: 1,
@@ -405,9 +405,8 @@ function App() {
           unixDayArry={unixDayArry}
         />
         <section className="excercise">
-        <div style={{ width: '200px', height: '100px', overflow: 'hidden' }}>
-          <img src={bench} alt="My GIF" style={{ width: '100%', height: '100%', transform: 'translateX(10%)' }} />
-        </div>
+        
+          <Gifbar></Gifbar>
 
           <div>
             <span>Exercises</span>
