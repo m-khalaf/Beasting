@@ -8,15 +8,14 @@ import {
   getexcerciseForDay,
   getMealForDay,
   calculateCompletionPercentage,
-} from "../helpers/selectors";
-import TopNav from "./TopNav";
-import CreateMeal from "./cards/createMeal";
-import CreateExercise from "./cards/createExercise";
+} from "../../helpers/selectors";
+import TopNav from "../TopNav";
+import CreateMeal from "./createMeal";
+import CreateExercise from "./createExercise";
 import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import bench from "../resources/bench.gif";
 
 let daysArrayInit = [
   {
@@ -392,7 +391,6 @@ function App() {
   console.log("completed bay", schedule_obj.mealTrack, completion);
   return (
     <div>
-      
       <main className="layout">
         <DaysNavigationBar
           daysArray={daysArrayInit}
@@ -403,10 +401,8 @@ function App() {
           meals={meals}
           unixDayArry={unixDayArry}
         />
-        <Gifbar gif={'exer'}></Gifbar>
+        <Gifbar gif={"exer"}></Gifbar>
         <section className="excercise">
-          
-          
           <div>
             <span>Exercises</span>
             <FontAwesomeIcon
@@ -432,7 +428,7 @@ function App() {
             setRefresh={setRefresh}
           />
         </section>
-        <Gifbar gif={'meal'}></Gifbar>        
+        <Gifbar gif={"meal"}></Gifbar>
         <section className="meal">
           <div>
             <span>Meals{completion.Monday}</span>

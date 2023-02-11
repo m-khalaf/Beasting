@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div
       style={{
-        color: "#c4b6a1",
+        color: "#6495ED",
         position: "relative",
         backgroundColor: "#efd9b4",
         height: "100vh",

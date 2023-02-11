@@ -5,7 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Switch, Grid, Checkbox, Spacer  } from "@nextui-org/react";
+import { Switch, Grid, Checkbox, Spacer } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTrashAlt,
@@ -13,9 +13,8 @@ import {
   faPlus,
   faL,
 } from "@fortawesome/free-solid-svg-icons";
-import "../styles/OutlinedCard.css";
+import "../../styles/OutlinedCard.css";
 import axios from "axios";
-
 
 const EditIcon = () => {
   return (
@@ -26,7 +25,6 @@ const EditIcon = () => {
 };
 
 const handleCompletion = (trackingId, completion) => {
-
   axios
     .post(`http://localhost:8000/home/excomplete/`, {
       completion: !completion,
@@ -39,7 +37,6 @@ const handleCompletion = (trackingId, completion) => {
       console.error(err);
     });
 };
-
 
 const deleteExc = (id) => {
   axios
@@ -65,28 +62,36 @@ const DeleteIcon = (props) => (
   </div>
 );
 export default function OutlinedCard(props) {
-
   const card = props.excercises.map((excercise) => {
     return (
       <React.Fragment className="card-container">
         <CardContent className="card card-content">
-          <Typography variant="h5" component="div" className="exercise-name" style={{ fontSize: '20px' }}>
+          <Typography
+            variant="h5"
+            component="div"
+            className="exercise-name"
+            style={{ fontSize: "20px" }}
+          >
             {excercise.exercise_name}
           </Typography>
 
-          <Typography variant="body2" style={{ fontSize: '12px' }}>
+          <Typography variant="body2" style={{ fontSize: "12px" }}>
             {excercise.exercise_detail}
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Checkbox isSelected={excercise.completion} checked={excercise.completion} color="success" onChange={() => {
+                  <Checkbox
+                    isSelected={excercise.completion}
+                    checked={excercise.completion}
+                    color="success"
+                    onChange={() => {
                       handleCompletion(
                         excercise.tracking_id,
-                        excercise.completion,
+                        excercise.completion
                       );
                       props.setRefresh(props.refresh + 1);
-                    }}>
-                  </Checkbox>
+                    }}
+                  ></Checkbox>
                   {/* <Switch
                     color="success"
                     checked={excercise.completion}
