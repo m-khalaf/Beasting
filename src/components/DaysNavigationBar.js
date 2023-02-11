@@ -17,7 +17,7 @@ function DaysNavigationBar(props) {
   });
 
   return (
-    <div style={{ height: "50px" }}>
+    <div style={{ height: "50px", width: "70%" }}>
       <Tabs
         value={value}
         onChange={handleChange}
