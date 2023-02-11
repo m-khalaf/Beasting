@@ -1,4 +1,5 @@
 import TopNav from "./TopNav";
+
 import { Route, Routes, Link } from "react-router-dom";
 // #efd9b4, #d6a692, #a39081, #4d6160, #292522
 import Home from "./Home";
@@ -15,6 +16,7 @@ export default function App() {
         <Route exact path="/schedule" element={<Schedule />} />
         <Route exact path="/analytics" element={<Analytics />} />
       </Routes>
+
     </div>
   );
 }
