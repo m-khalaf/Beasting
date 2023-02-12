@@ -11,6 +11,7 @@ import {
   getMealForDay,
   mealCompletionPercentage,
   excerciseCompletionPercentage,
+  daysArrayInit
 } from "../../helpers/selectors";
 import TopNav from "../TopNav";
 import CreateMeal from "./createMeal";
@@ -20,53 +21,8 @@ import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-let daysArrayInit = [
-  {
-    id: 1,
-    name: "Monday",
-  },
-  {
-    id: 2,
-    name: "Tuesday",
-    meals: [],
-    exercises: [],
-  },
-  {
-    id: 3,
-    name: "Wednesday",
-    meals: [],
-    exercises: [],
-  },
-  {
-    id: 4,
-    name: "Thursday",
-    meals: [],
-    exercises: [],
-  },
-  {
-    id: 5,
-    name: "Friday",
-    meals: [],
-    exercises: [],
-  },
-  {
-    id: 6,
-    name: "Saturday",
-    meals: [],
-    exercises: [],
-  },
-  {
-    id: 7,
-    name: "Sunday",
-    meals: [],
-    exercises: [],
-  },
-];
-
-let unixDate = 1675062129;
-
 function App() {
-  const [day, setDay] = useState(unixDate);
+  const [day, setDay] = useState(1675062129);
   // What we added
 
   const [schedule_obj, setSchedule_obj] = useState({
@@ -448,7 +404,6 @@ function App() {
             refresh={refresh}
             setRefresh={setRefresh}
             day={day}
-            date={unixDate}
           />
           <OutlinedCardExcercise
             excercises={excercises}
@@ -477,7 +432,6 @@ function App() {
             refresh={refresh}
             setRefresh={setRefresh}
             day={day}
-            date={unixDate}
           />
           <OutlinedCardMeal
             meals={meals}

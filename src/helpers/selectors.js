@@ -107,6 +107,62 @@ function excerciseCompletionPercentage(excerciseTrack) {
   return completionPercentage;
 }
 
+
+
+let daysArrayInit = [
+  {
+    id: 1,
+    name: "Monday",
+  },
+  {
+    id: 2,
+    name: "Tuesday",
+    meals: [],
+    exercises: [],
+  },
+  {
+    id: 3,
+    name: "Wednesday",
+    meals: [],
+    exercises: [],
+  },
+  {
+    id: 4,
+    name: "Thursday",
+    meals: [],
+    exercises: [],
+  },
+  {
+    id: 5,
+    name: "Friday",
+    meals: [],
+    exercises: [],
+  },
+  {
+    id: 6,
+    name: "Saturday",
+    meals: [],
+    exercises: [],
+  },
+  {
+    id: 7,
+    name: "Sunday",
+    meals: [],
+    exercises: [],
+  },
+];
+
+export {
+  getexcerciseForDay,
+  getMealForDay,
+  mealCompletionPercentage,
+  daysArrayInit,
+  excerciseCompletionPercentage,
+};
+
+
+
+
 // const getUnixTime = (a, date) => {
 //   let b = new Date(a * 1000);
 //   let day = b.getDay();
@@ -126,11 +182,3 @@ function excerciseCompletionPercentage(excerciseTrack) {
 //     return date + 6 * 24 * 60 * 60;
 //   }
 // };
-export {
-  getexcerciseForDay,
-  getMealForDay,
-  mealCompletionPercentage,
-  // getUnixTime,
-  excerciseCompletionPercentage,
-};
-
