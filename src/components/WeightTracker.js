@@ -1,42 +1,8 @@
-// import React, { useState, useEffect } from 'react';
-// import { Line } from 'react-chartjs-2';
-
-// const WeightChart = () => {
-//   const [weights, setWeights] = useState([
-//     { date: '2020-01-01', weight: 160 },
-//     { date: '2020-01-02', weight: 162 },
-//     { date: '2020-01-03', weight: 159 },
-//     { date: '2020-01-04', weight: 158 },
-//     { date: '2020-01-05', weight: 157 },
-//     // ... more data points
-//   ]);
-
-//   // useEffect(() => {
-//   //   // Fetch weight data here and update the state with setWeights
-//   // }, []);
-
-//   const data = {
-//     labels: weights.map(weight => weight.date),
-//     datasets: [
-//       {
-//         label: 'Weight',
-//         data: weights.map(weight => weight.weight),
-//         backgroundColor: 'rgba(75,192,192,0.4)',
-//         borderColor: 'rgba(75,192,192,1)',
-//         pointBackgroundColor: '#fff',
-//         pointBorderColor: 'rgba(75,192,192,1)',
-//         pointBorderWidth: 1,
-//         pointRadius: 5,
-//         pointHoverRadius: 8,
-//         pointHitRadius: 10
-//       }
-//     ]
-//   };
-
-
-import React from 'react';
+import React, {useState} from 'react';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { Chart, Line } from 'react-chartjs-2'
+import Calendar from 'react-calendar';
+
 ChartJS.register(...registerables);
 
 const data = {
@@ -67,16 +33,37 @@ const data = {
 };
 
 const WeightTracker = () => {
+  const time = new Date()
+  const [date, setDate] = useState(time);
+ 
+  const onChange = (selectedDate) => {
+    console.log(date)
+    return setDate(selectedDate);
+  };
+
   return (
-    <div>
-      <Line
-        data={data}
-        width={200}
-        height={200}
-        options={{ maintainAspectRatio: false }}
-        style={{ width: '200px', height: '200px' }}
-      />
+    <div class="analytics"  style={{ 
+      width: '100%', 
+      height: '45%', 
+      display: 'flex', 
+      flexDirection: 'row' ,
+    }}>
+      <div class="chart">
+        <Line
+          data={data}
+          width={800}
+          height={600}
+          options={{ maintainAspectRatio: false }}
+          style={{ width: '50%', height: '30%' }}
+        />
+        
+      </div>
+      <div class="calander" style={{ width: '300px', height: '200px' }}>
+          <Calendar onChange={onChange} value={date} />
+          <p>Selected date: {date.toString()}</p>
+      </div>
     </div>
+    
   );
 };
 
