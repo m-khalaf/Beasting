@@ -18,7 +18,7 @@ import CreateExercise from "./createExercise";
 import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 let daysArrayInit = [
   {
@@ -62,15 +62,11 @@ let daysArrayInit = [
     exercises: [],
   },
 ];
-let unixDayArry = [
-  1675062129, 1675148529, 1675234929, 1675321329, 1675407729, 1675494129,
-  1675580529,
-];
 
 let unixDate = 1675062129;
 
 function App() {
-  const [day, setDay] = useState(1675062129);
+  const [day, setDay] = useState(unixDate);
   // What we added
 
   const [schedule_obj, setSchedule_obj] = useState({
@@ -369,17 +365,16 @@ function App() {
   const [modalExerciseIsOpen, setModalExerciseIsOpen] = useState(false);
   const [modalMealIsOpen, setModalMealIsOpen] = useState(false);
   const [refresh, setRefresh] = useState(0);
-
+  const [unixDayArry, setUnixDayArray] = useState([
+    1675062129, 1675148529, 1675234929, 1675321329, 1675407729, 1675494129,
+    1675580529,
+  ])
   useEffect(() => {
     axios.get("http://localhost:8000/home/").then((response) => {
       setSchedule_obj(response.data);
       console.log(response.data);
     });
   }, [refresh]);
-
-  useEffect(() => {
-    console.log('000000000 ', day)
-  }, [day]);
 
   // this section describes the creating of new exercis and new meals
   // new meal section
@@ -404,9 +399,21 @@ function App() {
   let date_uni = date.toLocaleDateString("en-US", options);
   let mealCompleted = Math.round(mealCompletion[date_uni]) || "0";
   let excerCompleted = Math.round(excerCompletion[date_uni]) || "0";
+  const subtractUnixTime = function() {
+    setDay(day - 604800);
+    setUnixDayArray(unixDayArry.map(a => a - 604800));
+  }
+  const addUnixTime = function() {
+    setDay(day + 604800);
+    setUnixDayArray(unixDayArry.map(a => a + 604800));
+  }
   return (
     <div>
       <main className="layout">
+        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}}>
+        <button onClick={subtractUnixTime}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>  
         <DaysNavigationBar
           daysArray={daysArrayInit}
           schedule_obj={schedule_obj}
@@ -416,6 +423,10 @@ function App() {
           meals={meals}
           unixDayArry={unixDayArry}
         />
+        <button onClick={addUnixTime}>
+        <FontAwesomeIcon icon={faArrowRight} />
+        </button>
+        </div>
         <Gifbar gif={"exer"}></Gifbar>
         <section className="excercise">
           <div>
