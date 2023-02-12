@@ -67,6 +67,8 @@ let unixDayArry = [
   1675580529,
 ];
 
+let unixDate = 1675062129;
+
 function App() {
   const [day, setDay] = useState(1675062129);
   // What we added
@@ -375,6 +377,10 @@ function App() {
     });
   }, [refresh]);
 
+  useEffect(() => {
+    console.log('000000000 ', day)
+  }, [day]);
+
   // this section describes the creating of new exercis and new meals
   // new meal section
   const handleCreateMeal = () => {
@@ -431,6 +437,7 @@ function App() {
             refresh={refresh}
             setRefresh={setRefresh}
             day={day}
+            date={unixDate}
           />
           <OutlinedCardExcercise
             excercises={excercises}
@@ -459,6 +466,7 @@ function App() {
             refresh={refresh}
             setRefresh={setRefresh}
             day={day}
+            date={unixDate}
           />
           <OutlinedCardMeal
             meals={meals}

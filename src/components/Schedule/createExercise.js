@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { sortExercises } from "../../helpers/sort";
-import { getUnixTime } from "../../helpers/selectors";
 
 export default function CreateExercise({
   onCreateExercise,
@@ -12,8 +11,9 @@ export default function CreateExercise({
   schedule_obj,
   refresh,
   setRefresh,
-  day,
+  day
 }) {
+
   const [formData, setFormData] = useState({
     exerciseName: "",
     exerciseDetail: "",
@@ -43,7 +43,7 @@ export default function CreateExercise({
     // setFormData({ name: "", description: "" });
     setModalExerciseIsOpen(false);
   };
-
+  
   const saveExercise = () => {
     if (
       formData.exerciseDetail.length !== 0 &&
@@ -53,7 +53,7 @@ export default function CreateExercise({
         .post(`http://localhost:8000/home/save-exercise/`, {
           name: formData.exerciseName,
           detail: formData.exerciseDetail,
-          day: getUnixTime(day),
+          day: day,
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);

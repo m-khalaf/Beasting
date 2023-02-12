@@ -2,11 +2,12 @@ import React from "react";
 import { Tabs, Tab } from "@mui/material";
 
 function DaysNavigationBar(props) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(props.day);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (event,newValue) => {
     props.onChange(newValue);
     setValue(newValue);
+    console.log('+++++++++ ', newValue)
   };
   const day = props.unixDayArry.map((day) => {
     let date = new Date(day * 1000);

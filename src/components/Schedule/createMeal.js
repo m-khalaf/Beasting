@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import axios from "axios";
 import { sortMeals } from "../../helpers/sort";
-import { getUnixTime } from "../../helpers/selectors";
 
 export default function CreateMeal({
   onCreateMeal,
@@ -11,7 +10,7 @@ export default function CreateMeal({
   schedule_obj,
   refresh,
   setRefresh,
-  day,
+  day
 }) {
   const [mealName, setMealName] = useState("");
   const [sortedMeals, setSortedMeals] = useState(schedule_obj.meals);
@@ -19,13 +18,13 @@ export default function CreateMeal({
   const handleChange = (event) => {
     setMealName(event.target.value);
   };
-
+  
   const saveMeal = () => {
     if (mealName.length !== 0) {
       axios
         .post(`http://localhost:8000/home/save-meal/`, {
           name: mealName,
-          day: getUnixTime(day),
+          day: day,
         })
         .then((res) => {
           console.log("Completion status updated successfully", res.data);

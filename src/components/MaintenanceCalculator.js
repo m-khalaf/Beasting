@@ -25,9 +25,40 @@ const MaintenanceCalculator = () => {
     };
     
 
-  const calculateTdee = () => {
-    // code to calculate TDEE by adding the BMR, NEAT, and TEA
-  };
+    const calculateTdee = () => {
+      // Harris-Benedict equation to calculate BMR
+      let bmrValue;
+      if (gender === "male") {
+        bmrValue = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+      } else if (gender === "female") {
+        bmrValue = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+      }
+    
+      // Add NEAT and TEA to BMR to get TDEE
+      let tdeeValue = bmrValue;
+      switch (activityLevel) {
+        case "sedentary":
+          tdeeValue = bmrValue * 1.2;
+          break;
+        case "light":
+          tdeeValue = bmrValue * 1.375;
+          break;
+        case "moderate":
+          tdeeValue = bmrValue * 1.55;
+          break;
+        case "active":
+          tdeeValue = bmrValue * 1.725;
+          break;
+        case "very active":
+          tdeeValue = bmrValue * 1.9;
+          break;
+        default:
+          break;
+      }
+    
+      setBmr(bmrValue);
+      setTdee(tdeeValue);
+    };
 
   return (
     <div>
