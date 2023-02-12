@@ -290,29 +290,29 @@ let schedule_obj = {
 };
 
 const getexcerciseForDay = function (state, day) {
-  const exercises = state.exerTrack.filter(
-    (exc) => exc.exercise_date.split(" ")[0] === day
-  );
-  console.log(exercises);
+  let date = new Date(day * 1000);
+  let options = { month: "numeric", day: "numeric" };
+  const exercises = state.exerTrack.filter((exc) => {
+    let excDate = new Date(exc.exercise_date);
+    return (
+      excDate.toLocaleDateString("en-US", options) ==
+      date.toLocaleDateString("en-US", options)
+    );
+  });
   return exercises;
 };
 
 const getMealForDay = function (state, day) {
-  const meals = state.mealTrack.filter(
-    (meal) => meal.meal_date.split(" ")[0] === day
-  );
-  console.log(meals);
+  let date = new Date(day * 1000);
+  let options = { month: "numeric", day: "numeric" };
+  const meals = state.mealTrack.filter((meal) => {
+    let mealDate = new Date(meal.meal_date);
+    return (
+      mealDate.toLocaleDateString("en-US", options) ==
+      date.toLocaleDateString("en-US", options)
+    );
+  });
   return meals;
-};
-
-const dayFromValue = function (value) {
-  if (value === 0) return "Monday";
-  if (value === 1) return "Tuesday";
-  if (value === 2) return "Wednesday";
-  if (value === 3) return "Thursday";
-  if (value === 4) return "Friday";
-  if (value === 5) return "Saturday";
-  if (value === 6) return "Sunday";
 };
 
 function calculateCompletionPercentage(mealTrack) {
@@ -374,7 +374,6 @@ const getUnixTime = (day) => {
 export {
   getexcerciseForDay,
   getMealForDay,
-  dayFromValue,
   calculateCompletionPercentage,
   getUnixTime,
 };

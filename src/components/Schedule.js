@@ -66,7 +66,7 @@ let unixDayArry = [
 ];
 
 function App() {
-  const [day, setDay] = useState("Monday");
+  const [day, setDay] = useState(1675062129);
   // What we added
 
   const [schedule_obj, setSchedule_obj] = useState({
@@ -392,7 +392,6 @@ function App() {
   console.log("completed bay", schedule_obj.mealTrack, completion);
   return (
     <div>
-      
       <main className="layout">
         <DaysNavigationBar
           daysArray={daysArrayInit}
@@ -403,10 +402,8 @@ function App() {
           meals={meals}
           unixDayArry={unixDayArry}
         />
-        <Gifbar gif={'exer'}></Gifbar>
+        <Gifbar gif={"exer"}></Gifbar>
         <section className="excercise">
-          
-          
           <div>
             <span>Exercises</span>
             <FontAwesomeIcon
@@ -432,7 +429,7 @@ function App() {
             setRefresh={setRefresh}
           />
         </section>
-        <Gifbar gif={'meal'}></Gifbar>        
+        <Gifbar gif={"meal"}></Gifbar>
         <section className="meal">
           <div>
             <span>Meals{completion.Monday}</span>
