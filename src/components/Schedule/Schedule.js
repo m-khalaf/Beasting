@@ -3,20 +3,22 @@ import DaysNavigationBar from "./DaysNavigationBar";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Gifbar from "./Gifbar";
+import ProgressBar from "react-bootstrap/ProgressBar";
+
 // import { schedule_obj } from "../mocks/mockData";
 import {
   getexcerciseForDay,
   getMealForDay,
-  calculateCompletionPercentage,
-} from "../helpers/selectors";
-import TopNav from "./TopNav";
-import CreateMeal from "./cards/createMeal";
-import CreateExercise from "./cards/createExercise";
+  mealCompletionPercentage,
+  excerciseCompletionPercentage,
+} from "../../helpers/selectors";
+import TopNav from "../TopNav";
+import CreateMeal from "./createMeal";
+import CreateExercise from "./createExercise";
 import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import bench from "../resources/bench.gif";
 
 let daysArrayInit = [
   {
@@ -66,7 +68,7 @@ let unixDayArry = [
 ];
 
 function App() {
-  const [day, setDay] = useState("Monday");
+  const [day, setDay] = useState(1675062129);
   // What we added
 
   const [schedule_obj, setSchedule_obj] = useState({
@@ -387,12 +389,17 @@ function App() {
   // this section describes the creating of new exercis and new meals END
 
   const excercises = getexcerciseForDay(schedule_obj, day);
-  const completion = calculateCompletionPercentage(schedule_obj.mealTrack);
+  const mealCompletion = mealCompletionPercentage(schedule_obj.mealTrack);
+  const excerCompletion = excerciseCompletionPercentage(schedule_obj.exerTrack);
   const meals = getMealForDay(schedule_obj, day);
-  console.log("completed bay", schedule_obj.mealTrack, completion);
+  let date = new Date(day * 1000);
+  let options = { month: "numeric", day: "numeric" };
+
+  let date_uni = date.toLocaleDateString("en-US", options);
+  let mealCompleted = Math.round(mealCompletion[date_uni]) || "0";
+  let excerCompleted = Math.round(excerCompletion[date_uni]) || "0";
   return (
     <div>
-      
       <main className="layout">
         <DaysNavigationBar
           daysArray={daysArrayInit}
@@ -403,10 +410,8 @@ function App() {
           meals={meals}
           unixDayArry={unixDayArry}
         />
-        <Gifbar gif={'exer'}></Gifbar>
+        <Gifbar gif={"exer"}></Gifbar>
         <section className="excercise">
-          
-          
           <div>
             <span>Exercises</span>
             <FontAwesomeIcon
@@ -416,6 +421,7 @@ function App() {
                 setModalExerciseIsOpen(true);
               }}
             />
+            <ProgressBar now={excerCompleted} label={`${excerCompleted}%`} />
           </div>
           <CreateExercise
             modalExerciseIsOpen={modalExerciseIsOpen}
@@ -432,11 +438,10 @@ function App() {
             setRefresh={setRefresh}
           />
         </section>
-        <Gifbar gif={'meal'}></Gifbar>        
+        <Gifbar gif={"meal"}></Gifbar>
         <section className="meal">
           <div>
-            <span>Meals{completion.Monday}</span>
-            <span></span>
+            <span>Meals</span>
             <FontAwesomeIcon
               icon={faPlus}
               onClick={() => {
@@ -444,6 +449,7 @@ function App() {
               }}
               className="faPlus"
             />
+            <ProgressBar now={mealCompleted} label={`${mealCompleted}%`} />
           </div>
           <CreateMeal
             modalMealIsOpen={modalMealIsOpen}

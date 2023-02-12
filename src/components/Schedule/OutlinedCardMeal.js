@@ -9,7 +9,7 @@ import { Switch, Grid, Checkbox } from "@nextui-org/react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
-import "../styles/OutlinedCard.css";
+import "../../styles/OutlinedCard.css";
 
 const EditIcon = () => {
   return (
@@ -62,20 +62,29 @@ export default function OutlinedCardMeal(props) {
     return (
       <React.Fragment className="card-container">
         <CardContent className="card card-content">
-          <Typography variant="h5" component="div" className="exercise-name" style={{ fontSize: '17px' }}>
+          <Typography
+            variant="h5"
+            component="div"
+            className="exercise-name"
+            style={{ fontSize: "17px" }}
+          >
             {meal.meal_name}
           </Typography>
 
-          <Typography variant="body2" style={{ fontSize: '12px' }}>
+          <Typography variant="body2" style={{ fontSize: "12px" }}>
             {/* {meal.meal_detail} */}
             <CardActions className="card-actions">
               <Grid.Container>
                 <Grid>
-                  <Checkbox isSelected={meal.completion} checked={meal.completion} color="success" onChange={() => {
-                        handleCompletion(meal.tracking_id, meal.completion);
-                        props.setRefresh(props.refresh + 1);
-                      }}>
-                  </Checkbox>
+                  <Checkbox
+                    isSelected={meal.completion}
+                    checked={meal.completion}
+                    color="success"
+                    onChange={() => {
+                      handleCompletion(meal.tracking_id, meal.completion);
+                      props.setRefresh(props.refresh + 1);
+                    }}
+                  ></Checkbox>
                   {/* <Switch
                     color="success"
                     checked={meal.completion}
