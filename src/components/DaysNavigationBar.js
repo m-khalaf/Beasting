@@ -1,12 +1,10 @@
 import React from "react";
 import { Tabs, Tab } from "@mui/material";
-import { dayFromValue } from "../helpers/selectors";
 
 function DaysNavigationBar(props) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    console.log("newvale", newValue);
     props.onChange(newValue);
     setValue(newValue);
   };
