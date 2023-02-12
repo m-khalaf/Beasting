@@ -11,15 +11,14 @@ import {
   getMealForDay,
   mealCompletionPercentage,
   excerciseCompletionPercentage,
-} from "../helpers/selectors";
-import TopNav from "./TopNav";
-import CreateMeal from "./cards/createMeal";
-import CreateExercise from "./cards/createExercise";
+} from "../../helpers/selectors";
+import TopNav from "../TopNav";
+import CreateMeal from "./createMeal";
+import CreateExercise from "./createExercise";
 import OutlinedCardExcercise from "./OutlinedCardExcercise";
 import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import bench from "../resources/bench.gif";
 
 let daysArrayInit = [
   {
