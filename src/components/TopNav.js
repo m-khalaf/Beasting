@@ -5,8 +5,16 @@ export default function Navigation() {
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div style={{ width: '106px', height: '60px', overflow: 'hidden' }}>
-            <img src={logo} alt="My GIF" style={{ width: '100%', height: '100%', transform: 'translateX(10%)' }} />
+        <div style={{ width: "106px", height: "60px", overflow: "hidden" }}>
+          <img
+            src={logo}
+            alt="My GIF"
+            style={{
+              width: "100%",
+              height: "100%",
+              transform: "translateX(10%)",
+            }}
+          />
         </div>
         <button
           class="navbar-toggler"
@@ -25,6 +33,11 @@ export default function Navigation() {
             <li class="nav-item">
               <a class="nav-link" href="/">
                 Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/plan">
+                Plan
               </a>
             </li>
             <li class="nav-item">

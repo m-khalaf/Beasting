@@ -5,21 +5,19 @@ import { Route, Routes, Link } from "react-router-dom";
 import Home from "./Home";
 import Progress from "./Progress";
 import Analytics from "./Analytics";
-import Schedule from "./Schedule";
-
+import Schedule from "./Schedule/Schedule";
+import Plans from "./Plan/Index";
 export default function App() {
   return (
     <div>
-      <TopNav>
-        
-      </TopNav>
+      <TopNav></TopNav>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/progress" element={<Progress />} />
         <Route exact path="/schedule" element={<Schedule />} />
         <Route exact path="/analytics" element={<Analytics />} />
+        <Route exact path="/plan" element={<Plans />} />
       </Routes>
-
     </div>
   );
 }
