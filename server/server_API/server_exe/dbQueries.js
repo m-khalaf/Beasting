@@ -137,6 +137,29 @@ module.exports = {
       });
   },
   
+  saveMealPlan: (meal_date, mealPlan, completion, user_id) => {
+    let insertMeals =``;
+
+    for (const day in mealPlan) {
+      for(const meal of mealPlan[day]){
+        insertMeals += `
+        insert into meals_tracker (meal_name, meal_date, completion, user_id) values (${meal_date + 60*60*24*(day-1)}, meal, $1, $2);
+        `
+      }
+    }
+    return pool.query(
+      `
+        ${insertMeals}
+      `, [completion, user_id]
+    )
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  },
+  
  
   
   // Complete meal tracking
