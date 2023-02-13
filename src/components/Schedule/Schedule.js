@@ -441,7 +441,7 @@ function App(props) {
             setRefresh={setRefresh}
           />
         </section>
-        <div class="smiley-face" data-score="50">
+        <div class="smiley-face" data-score="50"  style={{ height: "300px"}}>
           <div class="smiley-face-inner">
             <div class="smiley-face-circle"></div>
             <div class="smiley-face-eyes"></div>
