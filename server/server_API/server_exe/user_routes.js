@@ -237,4 +237,34 @@ router.post('/save-meal-plan/', (req, res) => {
     .catch(err => res.json(err));
 });
 
+
+
+router.post('/save-exer-plan/', (req, res) => {
+  let date = req.body.day; 
+  const exerPlan = req.body.plan;
+  const userId = 1;
+  
+  db.saveExercisePlan(date, exerPlan, 'false', userId)
+    .then(() => {
+      db.getMeals().then((meals) => {
+        if (meals.length !== 0) {
+          db.getExercises().then((exercises) => {
+            if (exercises.length !== 0) {
+              db.getExercisesTrack(userId).then((exerTrack) => {
+                db.getMealsTrack(userId).then((mealTrack) => {
+                  res.json(schedule({ meals, exercises, exerTrack, mealTrack }));
+                });
+              });
+            } else {
+              res.json('ERROR');
+            }
+          });
+        } else {
+          res.json('ERROR');
+        }
+      });
+    })
+    .catch(err => res.json(err));
+});
+
 module.exports = router;

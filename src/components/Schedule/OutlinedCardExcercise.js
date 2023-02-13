@@ -70,7 +70,7 @@ export default function OutlinedCard(props) {
             variant="h5"
             component="div"
             className="exercise-name"
-            style={{ fontSize: "20px" }}
+            style={{ fontSize: "17px" }}
           >
             {excercise.exercise_name}
           </Typography>

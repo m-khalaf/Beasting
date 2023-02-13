@@ -143,14 +143,13 @@ module.exports = {
     for (const day in mealPlan) {
       for(const meal of mealPlan[day]){
         insertMeals += `
-        insert into meals_tracker (meal_name, meal_date, completion, user_id) values (${meal_date + 60*60*24*(day-1)}, meal, $1, $2);
+        insert into meals_tracker (meal_name, meal_date, completion, user_id) values ( '${meal}' ,${meal_date + 60*60*24*(day-1)}, ${completion}, ${user_id});
         `
       }
     }
+    console.log(insertMeals);
     return pool.query(
-      `
-        ${insertMeals}
-      `, [completion, user_id]
+      insertMeals
     )
       .then((result) => {
         return result;
@@ -160,7 +159,29 @@ module.exports = {
       });
   },
   
- 
+  saveExercisePlan: (exer_date, exerPlan, completion, user_id) => {
+    let insertExercises =``;
+
+    for (const day in exerPlan) {
+      for(const exer of exerPlan[day]){
+        if (exer[0] !== "Rest day") {
+          insertExercises += `
+          INSERT INTO exercise_tracking (exercise_name, exercise_detail, completion, exercise_date, user_id) values ( '${exer[0]}', '${exer[1]}',${completion}, ${exer_date + 60*60*24*(day)},  ${user_id});
+          `
+        }
+      }
+    }
+    console.log(insertExercises);
+    return pool.query(
+      insertExercises
+    )
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  },
   
   // Complete meal tracking
   completeMealTracking: (tracking_id, completion) => {

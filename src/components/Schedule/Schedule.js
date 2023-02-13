@@ -21,8 +21,8 @@ import OutlinedCardMeal from "./OutlinedCardMeal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-function App() {
-  const [day, setDay] = useState(1675062129);
+function App(props) {
+  const [day, setDay] = useState(props.init);
   // What we added
 
   const [schedule_obj, setSchedule_obj] = useState({
@@ -357,10 +357,12 @@ function App() {
   let excerCompleted = Math.round(excerCompletion[date_uni]) || "0";
   const subtractUnixTime = function() {
     setDay(day - 604800);
+    props.setUnixDay(day - 604800)
     setUnixDayArray(unixDayArry.map(a => a - 604800));
   }
   const addUnixTime = function() {
     setDay(day + 604800);
+    props.setUnixDay(day + 604800)
     setUnixDayArray(unixDayArry.map(a => a + 604800));
   }
   return (

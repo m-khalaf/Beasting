@@ -66,7 +66,7 @@ export default function OutlinedCardMeal(props) {
             variant="h5"
             component="div"
             className="exercise-name"
-            style={{ fontSize: "17px" }}
+            style={{ fontSize: "14px" }}
           >
             {meal.meal_name}
           </Typography>
