@@ -48,4 +48,4 @@ for (const day in mealPlan) {
   }
 }
   
-console.log(insertMeals)
+console.log( Date.now())

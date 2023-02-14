@@ -9,7 +9,7 @@ import Schedule from "./Schedule/Schedule";
 import Plans from "./Plan/Index";
 
 export default function App() {
-  const init = 1675062129;
+  const init = Math.floor(Date.now() / 1000);
   const [unixDay, setUnixDay] = useState(init)
   
   return (
