@@ -1,9 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import charmander from "../../resources/Charmander.png";
 import "./PlanCard.scss";
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
 
 export default function Plan({ title, description, img, savePlan }) {
+  const navigate = useNavigate();
   let classString = "d-flex justify-content-evenly d-flex align-items-center " + title;
+
+  const handleClick = () => {
+    
+    // Navigate to a different route
+    savePlan()
+    navigate('/schedule');
+  };
+
   return (
     <div class={classString} id={title} >
       <div className="card" style={{ height: "70vh", width: "50vh" }} >
@@ -16,9 +28,9 @@ export default function Plan({ title, description, img, savePlan }) {
         <div className="card-body" style={{ height: "40%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", alignSelf: "center" }}>
           <h5 className="card-title third-space" style={{ height: "25%" }}>{title}</h5>
           {/* <p className="card-text third-space" style={{ height: "30%", marginBottom: '3%' }}>{description}</p> */}
-          <a href="#" onClick={savePlan} id={title} className="btn btn-primary third-space" style={{ height: "37px" }} onMouseEnter={(e) => { e.target.style.backgroundColor = "red"; e.target.transform = "scale(0.95)"; }} onMouseLeave={(e) => { e.target.style.size = "1"; e.target.style.backgroundColor = "#0d6efd"}}>
+          <button onClick={handleClick} id={title} className="btn btn-primary third-space" style={{ height: "37px" }} onMouseEnter={(e) => { e.target.style.backgroundColor = "red"; e.target.transform = "scale(0.95)"; }} onMouseLeave={(e) => { e.target.style.size = "1"; e.target.style.backgroundColor = "#0d6efd"}}>
             Select Plan
-          </a>
+          </button>
         </div>
       </div>
     </div>
