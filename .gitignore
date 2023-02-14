@@ -25,3 +25,4 @@ yarn-error.log*
 /server/server_api/.env
 /server/server_api/node_modules
 package-lock.json
+.env
