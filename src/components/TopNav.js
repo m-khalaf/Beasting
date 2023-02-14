@@ -57,7 +57,7 @@ export default function Navigation() {
             </li>
           </ul>
         </div>
-        <span>Logged-in as Sally </span>
+        <span>Logged-in as Bob </span>
 
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           Logout

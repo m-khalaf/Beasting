@@ -14,9 +14,9 @@ export default function Plan({ title, description, img, savePlan }) {
           style={{ height: "50vh", width: "49.5vh" }}
         />
         <div className="card-body" style={{ height: "40%", width: "100%", display: "flex", flexDirection: "column", alignItems: "center", alignContent: "center", alignSelf: "center" }}>
-          <h5 className="card-title third-space" style={{ height: "15%" }}>{title}</h5>
-          <p className="card-text third-space" style={{ height: "30%", marginBottom: '3%' }}>{description}</p>
-          <a href="#" onClick={savePlan} id={title} className="btn btn-primary third-space" style={{ height: "30%" }} onMouseEnter={(e) => { e.target.style.backgroundColor = "red"; e.target.transform = "scale(0.95)"; }} onMouseLeave={(e) => { e.target.style.size = "1"; e.target.style.backgroundColor = "#0d6efd"}}>
+          <h5 className="card-title third-space" style={{ height: "25%" }}>{title}</h5>
+          {/* <p className="card-text third-space" style={{ height: "30%", marginBottom: '3%' }}>{description}</p> */}
+          <a href="#" onClick={savePlan} id={title} className="btn btn-primary third-space" style={{ height: "37px" }} onMouseEnter={(e) => { e.target.style.backgroundColor = "red"; e.target.transform = "scale(0.95)"; }} onMouseLeave={(e) => { e.target.style.size = "1"; e.target.style.backgroundColor = "#0d6efd"}}>
             Select Plan
           </a>
         </div>

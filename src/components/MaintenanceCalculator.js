@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const MaintenanceCalculator = () => {
-  const [age, setAge] = useState('');
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
+  const [age, setAge] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
   const [activityLevel, setActivityLevel] = useState('');
   const [gender, setGender] = useState('');
   const [bmr, setBmr] = useState(0);
@@ -24,41 +24,34 @@ const MaintenanceCalculator = () => {
       setBmr(bmr);
     };
     
-
-    const calculateTdee = () => {
-      // Harris-Benedict equation to calculate BMR
-      let bmrValue;
-      if (gender === "male") {
-        bmrValue = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
-      } else if (gender === "female") {
-        bmrValue = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
-      }
-    
-      // Add NEAT and TEA to BMR to get TDEE
-      let tdeeValue = bmrValue;
-      switch (activityLevel) {
-        case "sedentary":
-          tdeeValue = bmrValue * 1.2;
-          break;
-        case "light":
-          tdeeValue = bmrValue * 1.375;
-          break;
-        case "moderate":
-          tdeeValue = bmrValue * 1.55;
-          break;
-        case "active":
-          tdeeValue = bmrValue * 1.725;
-          break;
-        case "very active":
-          tdeeValue = bmrValue * 1.9;
-          break;
-        default:
-          break;
-      }
-    
-      setBmr(bmrValue);
-      setTdee(tdeeValue);
-    };
+    useEffect(
+      () => {
+        // Add NEAT and TEA to BMR to get TDEE
+        console.log('d')
+        let tdeeValue = bmr;
+        switch (activityLevel) {
+          case "1.2":
+            tdeeValue = bmr * 1.2;
+            break;
+          case "1.375":
+            tdeeValue = bmr * 1.375;
+            break;
+          case "1.55":
+            tdeeValue = bmr * 1.55;
+            break;
+          case "1.75":
+            tdeeValue = bmr * 1.725;
+            break;
+          case "1.9":
+            tdeeValue = bmr * 1.9;
+            break;
+          default:
+            break;
+        }
+      
+        setTdee(tdeeValue);
+      },
+    [bmr]);
 
   return (
     <div>
@@ -81,7 +74,7 @@ const MaintenanceCalculator = () => {
         <label>
           Activity Level:
           <select value={activityLevel} onChange={(e) => setActivityLevel(e.target.value)}>
-            <option value="">Select</option>
+            <option value="0">Select</option>
             <option value="1.2">Sedentary (little or no exercise)</option>
             <option value="1.375">Lightly active (light exercise 1-3 days/week)</option>
             <option value="1.55">Moderately active (moderate exercise 3-5 days/week)</option>
@@ -97,11 +90,7 @@ const MaintenanceCalculator = () => {
         </label>
         <br />
         <button type="button" onClick={calculateBmr}>
-          Calculate BMR (Basal Metabolic Rate (BMR))
-        </button>
-        <br />
-        <button type="button" onClick={calculateTdee}>
-          Calculate TDEE 
+          Calculate BMR (Basal Metabolic Rate) and TDEE (Total daily energy expenditure)
         </button>
       </form>
       <p>BMR: {bmr}</p>

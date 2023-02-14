@@ -53,7 +53,7 @@ export default function Plans(props) {
        <div class="d-flex justify-content-evenly d-flex align-items-center">
           <PlanCard
             title="Beginner Exercise Plan"
-            description=""
+            // description=""
             img={charmander}
             day={props.day}
             savePlan={() => {
@@ -62,7 +62,7 @@ export default function Plans(props) {
           ></PlanCard>
           <PlanCard
             title="Intermediate Exercise Plan"
-            description=""
+            // description=""
             img={Charmeleon}
             day={props.day}
             savePlan={() => {
@@ -71,7 +71,7 @@ export default function Plans(props) {
           ></PlanCard>
           <PlanCard
             title="Expert Exercise Plan"
-            description=""
+            // description=""
             img={charzard}
             day={props.day}
             savePlan={() => {
@@ -82,7 +82,7 @@ export default function Plans(props) {
         <div class="d-flex justify-content-evenly d-flex align-items-center">
           <PlanCard
             title="Ketogenic Diet"
-            description="High-fat, moderate-protein, low-carb diet for burning fat instead of carbs."
+            // description="High-fat, moderate-protein, low-carb diet for burning fat instead of carbs."
             img={machamp}
             day={props.day}
             savePlan={() => {
@@ -91,7 +91,7 @@ export default function Plans(props) {
           ></PlanCard>
           <PlanCard
             title="Vegan Diet"
-            description="Plant-based foods, including fruits, vegetables, whole grains, legumes, nuts, and seeds"
+            // description="Plant-based foods, including fruits, vegetables, whole grains, legumes, nuts, and seeds"
             img={ivysaur}
             day={props.day}
             savePlan={() => {
@@ -100,7 +100,7 @@ export default function Plans(props) {
           ></PlanCard>
           <PlanCard
             title="Pescatarian Diet"
-            description="A plant-based diet that includes fish and other seafood, excludes beef, poultry, and pork."
+            // description="A plant-based diet that includes fish and other seafood, excludes beef, poultry, and pork."
             img={magikarp}
             day={props.day}
             savePlan={() => {
