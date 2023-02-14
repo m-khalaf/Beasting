@@ -58,10 +58,10 @@ const WeightTracker = () => {
         />
         
       </div>
-      <div class="calander" style={{ width: '300px', height: '200px' }}>
+      {/* <div class="calander" style={{ width: '300px', height: '200px' }}>
           <Calendar onChange={onChange} value={date} />
           <p>Selected date: {date.toString()}</p>
-      </div>
+      </div> */}
     </div>
     
   );
