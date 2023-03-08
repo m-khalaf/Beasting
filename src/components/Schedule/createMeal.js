@@ -22,7 +22,7 @@ export default function CreateMeal({
   const saveMeal = () => {
     if (mealName.length !== 0) {
       axios
-        .post(`http://localhost:8000/home/save-meal/`, {
+        .post(`http://localhost:8080/home/save-meal/`, {
           name: mealName,
           day: day,
         })

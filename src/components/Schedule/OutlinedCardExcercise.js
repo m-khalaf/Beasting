@@ -26,7 +26,7 @@ const EditIcon = () => {
 
 const handleCompletion = (trackingId, completion) => {
   axios
-    .post(`http://localhost:8000/home/excomplete/`, {
+    .post(`http://localhost:8080/home/excomplete/`, {
       completion: !completion,
       trackingId: trackingId,
     })
@@ -40,7 +40,7 @@ const handleCompletion = (trackingId, completion) => {
 
 const deleteExc = (id) => {
   axios
-    .delete(`http://localhost:8000/home/edelete/${id}`)
+    .delete(`http://localhost:8080/home/edelete/${id}`)
     .then((res) => {
       console.log("Deleted successfully", id);
     })

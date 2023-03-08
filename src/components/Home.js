@@ -92,9 +92,7 @@ export default function Home() {
         <h1 style={{ fontSize: "36px" }}>Welcome to our Health App</h1>
         <p style={{ fontSize: "18px" }}>
           Our mission is to help you track your progress and maintain a healthy
-          lifestyle through a fun and interactive experience. With our app, you
-          can watch your pet get healthier as you progress in your exercises and
-          food choices.
+          lifestyle through a fun and interactive experience.
         </p>
       </div>
     </div>

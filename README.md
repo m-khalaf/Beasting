@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# Workout Schedhuling app
+This health app can help users make healthier choices each day by enabling them to track their progress, view personalized dashboards, add new workouts or exercises, and analyze their basal metabolic rate and daily energy expenditure.  It includes a PostgreSQL, Express, and Node.js backend, with a React frontend employing Bootstrap and MaterialUI packages.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
 
-## Available Scripts
+### Setting up our Client
+Install React dependencies with `npm install` in root directory.
 
-In the project directory, you can run:
+Add an .env file with a variable "PORT=8000"  
 
-### `npm start`
+### Setting up our server
+In a seperate terminal, navigate to the server folder and initialize the server dependencies and .env file
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```sh
+cd server/server_API
+npm install
+touch .env
+```
+To the .env file, add The following with the appropriate PostgreSQL database settings, database port number and server port number
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```sh
+  DB_HOST=localhost
+  DB_USER=username
+  DB_PASS=password
+  DB_NAME=name
+  DB_PORT=port-number
+  PORT=8080
+```
+# Setting up our Database
+In a third seperate terminal, navigate to the root directory and run the following
+```sh
+  cd server/server_API
+  \psql
+  CREATE DATABASE workout
+  \c workout
+```
 
-### `npm test`
+Add our initial database migrations and seeds
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+  \i db/schema.sql;
+  \i db/seeds/exercises;
+  \i db/seeds/meals.sql;
+  \i db/seeds/meals_tracker.sql;
+  \i db/seeds/exercise_tracking.sql;
+  \i db/seeds/users.sql; 
+```
+## Run the client and back-end server 
 
-### `npm run build`
+To run the client React server, in the root directory run:
+```sh
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+In a seperate terminal navigate to the root folder then run the following:
+```sh
+cd server/server_API
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+!["screenshot description"](./resources/home.png)
+Choose from preset plans
+!["screenshot description"](./resources/plan.png)
+!["screenshot description"](./resources/plan2.png)
+Plans and exervises are added to your routine
+!["screenshot description"](./resources/schedhule.png)
+Add custom exercises and meals
+!["screenshot description"](./resources/modal.png)
+Track your progress
+!["screenshot description"](./resources/progress.png)
+!["screenshot description"](./resources/analysis.png)

@@ -36,7 +36,7 @@ function App(props) {
   const [refresh, setRefresh] = useState(0);
   const [unixDayArry, setUnixDayArray] = useState(initalWeek(props.init))
   useEffect(() => {
-    axios.get("http://localhost:8000/home/").then((response) => {
+    axios.get("http://localhost:8080/home/").then((response) => {
       setSchedule_obj(response.data);
       console.log(response.data);
     });

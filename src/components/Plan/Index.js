@@ -18,7 +18,7 @@ export default function Plans(props) {
   const saveMealPlan = (meal) => {
     if (meal !== undefined) {
       axios
-        .post(`http://localhost:8000/home/save-meal-plan/`, {
+        .post(`http://localhost:8080/home/save-meal-plan/`, {
           plan: meal,
           day: props.day,
         })
@@ -35,7 +35,7 @@ export default function Plans(props) {
   const saveExerPlan = (exer) => {
     if (exer !== undefined) {
       axios
-        .post(`http://localhost:8000/home/save-exer-plan/`, {
+        .post(`http://localhost:8080/home/save-exer-plan/`, {
           plan: exer,
           day: props.day,
         })

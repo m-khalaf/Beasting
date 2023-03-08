@@ -18,7 +18,10 @@ export default function CreateExercise({
     exerciseName: "",
     exerciseDetail: "",
   });
-  const [sortedExercises, setSortedExercises] = useState([
+  console.log('BOOOBA',schedule_obj.exercises === false ? [] : [
+    ...schedule_obj.exercises,
+  ])
+  const [sortedExercises, setSortedExercises] = useState(schedule_obj.exercises === false ? [] : [
     ...schedule_obj.exercises,
   ]);
 
@@ -50,7 +53,7 @@ export default function CreateExercise({
       formData.exerciseName.length !== 0
     ) {
       axios
-        .post(`http://localhost:8000/home/save-exercise/`, {
+        .post(`http://localhost:8080/home/save-exercise/`, {
           name: formData.exerciseName,
           detail: formData.exerciseDetail,
           day: day,

@@ -21,7 +21,7 @@ const EditIcon = () => {
 
 const handleCompletion = (trackingId, completion) => {
   axios
-    .post(`http://localhost:8000/home/mcomplete/`, {
+    .post(`http://localhost:8080/home/mcomplete/`, {
       completion: !completion,
       trackingId: trackingId,
     })
@@ -35,7 +35,7 @@ const handleCompletion = (trackingId, completion) => {
 
 const deleteMeal = (id) => {
   axios
-    .delete(`http://localhost:8000/home/mdelete/${id}`)
+    .delete(`http://localhost:8080/home/mdelete/${id}`)
     .then((res) => {
       console.log("Completion status updated successfully", id);
     })
